@@ -29,10 +29,17 @@ public class DrugService {
         drugRepository.deleteById(id);
     }
 
-    public List<Drug> findByActiveSubstance(String substance){
-
-        return new ArrayList<>();
+    public List<Drug> findByActiveSubstanceFrag(String substanceNameFrag){
+        return drugRepository.findByActiveSubstanceFrag(substanceNameFrag);
     }
+    public List<Drug> findByCommonNameFrag(String commonNameFrag){
+        return drugRepository.findByCommonNameFrag(commonNameFrag);
+    }
+
+    public List<Drug> findByTradeNameFrag(String tradeNameFrag){
+        return drugRepository.findByTradeNameFrag(tradeNameFrag);
+    }
+
 
 
 

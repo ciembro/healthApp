@@ -14,11 +14,9 @@ public interface DrugRepository extends CrudRepository<Drug, Long> {
 
     Drug save(Drug drug);
 
-    List<Drug> findByActiveSubstance(String substance);
+    List<Drug> findByActiveSubstanceFrag(@Param("frag") String textFragment);
 
-    List<Drug> findByActiveSubstanceFrag(@Param("frag") String frag);
+    List<Drug> findByCommonNameFrag(@Param("frag") String textFragment);
 
-    List<Drug> findByCommonNameFrag(@Param("frag") String frag);
-
-    List<Drug> findByTradeNameFrag(@Param("frag") String frag);
+    List<Drug> findByTradeNameFrag(@Param("frag") String textFragment);
 }
