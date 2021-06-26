@@ -21,6 +21,14 @@ public class DrugService {
         }
     }
 
+    public Drug save(Drug drug){
+        return drugRepository.save(drug);
+    }
+
+    public void deleteById(Long id){
+        drugRepository.deleteById(id);
+    }
+
     public List<Drug> findByActiveSubstance(String substance){
 
         return new ArrayList<>();
