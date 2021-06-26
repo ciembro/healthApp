@@ -1,4 +1,4 @@
-package com.ciembro.healthApp.domain;
+package com.ciembro.healthApp.domain.drug;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

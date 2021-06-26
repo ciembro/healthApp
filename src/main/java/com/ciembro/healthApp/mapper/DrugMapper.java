@@ -1,7 +1,7 @@
 package com.ciembro.healthApp.mapper;
 
-import com.ciembro.healthApp.domain.Drug;
-import com.ciembro.healthApp.domain.DrugDto;
+import com.ciembro.healthApp.domain.drug.Drug;
+import com.ciembro.healthApp.domain.drug.DrugDto;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 

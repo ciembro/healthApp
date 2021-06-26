@@ -1,10 +1,13 @@
-package com.ciembro.healthApp.domain;
+package com.ciembro.healthApp.domain.drug;
 
+import com.ciembro.healthApp.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NamedNativeQueries({
         @NamedNativeQuery(
@@ -67,4 +70,7 @@ public class Drug {
         this.activeSubstance = activeSubstance;
         this.leafletUrl = leafletUrl;
     }
+
+    @ManyToMany(mappedBy = "drugs")
+    List<User> users = new ArrayList<>();
 }

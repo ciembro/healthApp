@@ -1,12 +1,11 @@
 package com.ciembro.healthApp.service;
 
-import com.ciembro.healthApp.domain.Drug;
+import com.ciembro.healthApp.domain.drug.Drug;
 import com.ciembro.healthApp.repository.DrugRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

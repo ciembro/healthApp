@@ -1,6 +1,6 @@
 package com.ciembro.healthApp.repository;
 
-import com.ciembro.healthApp.domain.Drug;
+import com.ciembro.healthApp.domain.drug.Drug;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

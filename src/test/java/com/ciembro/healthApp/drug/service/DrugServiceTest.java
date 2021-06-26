@@ -1,7 +1,7 @@
 package com.ciembro.healthApp.drug.service;
 
 
-import com.ciembro.healthApp.domain.Drug;
+import com.ciembro.healthApp.domain.drug.Drug;
 import com.ciembro.healthApp.service.DrugService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

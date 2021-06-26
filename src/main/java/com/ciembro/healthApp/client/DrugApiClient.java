@@ -1,17 +1,13 @@
 package com.ciembro.healthApp.client;
 
 import com.ciembro.healthApp.config.DrugApiConfig;
-import com.ciembro.healthApp.domain.DrugApiResponse;
-import com.ciembro.healthApp.domain.DrugDto;
-import com.ciembro.healthApp.domain.Links;
-import lombok.NoArgsConstructor;
+import com.ciembro.healthApp.domain.drug.DrugApiResponse;
+import com.ciembro.healthApp.domain.drug.DrugDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

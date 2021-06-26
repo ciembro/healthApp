@@ -1,10 +1,9 @@
-package com.ciembro.healthApp.domain;
+package com.ciembro.healthApp.domain.drug;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.web.JsonPath;
 
 @Data
 @NoArgsConstructor
