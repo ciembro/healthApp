@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,6 +38,14 @@ public class DrugService {
 
     public List<Drug> findByTradeNameFrag(String tradeNameFrag){
         return drugRepository.findByTradeNameFrag(tradeNameFrag);
+    }
+
+    public List<Drug> findAllMatching(String textToMatch){
+        List<Drug> matchedDrugs = new ArrayList<>();
+        matchedDrugs.addAll(findByActiveSubstanceFrag(textToMatch));
+        matchedDrugs.addAll(findByCommonNameFrag(textToMatch));
+        matchedDrugs.addAll(findByTradeNameFrag(textToMatch));
+        return matchedDrugs;
     }
 
 

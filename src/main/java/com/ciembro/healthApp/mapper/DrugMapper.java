@@ -1,6 +1,7 @@
 package com.ciembro.healthApp.mapper;
 
 import com.ciembro.healthApp.domain.drug.Drug;
+import com.ciembro.healthApp.domain.drug.DrugDbResultDto;
 import com.ciembro.healthApp.domain.drug.DrugDto;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,21 @@ public class DrugMapper {
     public List<Drug> mapToDrugList(List<DrugDto> drugDtoList){
         return  drugDtoList.stream()
                 .map(this::mapToDrug)
+                .collect(Collectors.toList());
+    }
+
+    public DrugDbResultDto mapFromDbToDrugDto(Drug drug){
+        return new DrugDbResultDto(drug.getId(),
+                drug.getActiveSubstance(),
+                drug.getCommonName(),
+                drug.getTradeName(),
+                drug.getBrand(),
+                drug.getLeafletUrl());
+    }
+
+    public List<DrugDbResultDto> mapFromDbToDrugDtoList(List<Drug> drugs){
+        return drugs.stream()
+                .map(this::mapFromDbToDrugDto)
                 .collect(Collectors.toList());
     }
 }

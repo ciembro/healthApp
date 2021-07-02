@@ -35,7 +35,7 @@ import java.util.List;
 public class Drug {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true)
     private Long id;
 
