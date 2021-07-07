@@ -48,6 +48,12 @@ public class DrugService {
         return matchedDrugs;
     }
 
+    public String getLeafletUrl(Drug drug){
+        return drug.getLeafletUrl();
+    }
+
+
+
 
 
 

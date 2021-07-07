@@ -24,7 +24,7 @@ public class DrugServiceTest {
     @Test
     void testSave(){
         //given
-        Drug drug = new Drug("testDrugId",
+        Drug drug = new Drug(
                 "testTradeName",
                 "testCommonName",
                 "testDose",
@@ -43,7 +43,7 @@ public class DrugServiceTest {
     @Test
     void testFindByActiveSubstanceFrag(){
         //given
-        Drug drug = new Drug("testDrugId",
+        Drug drug = new Drug(
                 "testTradeName",
                 "testCommonName",
                 "testDose",
@@ -66,7 +66,7 @@ public class DrugServiceTest {
     @Test
     void testFindByCommonNameFrag(){
         //given
-        Drug drug = new Drug("testDrugId",
+        Drug drug = new Drug(
                 "testTradeName",
                 "testCommonName",
                 "testDose",
@@ -89,7 +89,7 @@ public class DrugServiceTest {
     @Test
     void testFindByTradeNameFrag(){
         //given
-        Drug drug = new Drug("testDrugId",
+        Drug drug = new Drug(
                 "testTradeName",
                 "testCommonName",
                 "testDose",

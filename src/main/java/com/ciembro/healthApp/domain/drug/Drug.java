@@ -29,7 +29,6 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "drugs")
 public class Drug {
@@ -38,9 +37,6 @@ public class Drug {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true)
     private Long id;
-
-    @Column(nullable = false)
-    private String drugId;
 
     @Column
     private String tradeName;
@@ -60,9 +56,9 @@ public class Drug {
     @Column
     private String leafletUrl;
 
-    public Drug(String drugId, String tradeName, String commonName,
+
+    public Drug( String tradeName, String commonName,
                 String dose, String brand, String activeSubstance, String leafletUrl) {
-        this.drugId = drugId;
         this.tradeName = tradeName;
         this.commonName = commonName;
         this.dose = dose;

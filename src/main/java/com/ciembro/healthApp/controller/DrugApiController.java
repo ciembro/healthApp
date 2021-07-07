@@ -3,11 +3,11 @@ package com.ciembro.healthApp.controller;
 import com.ciembro.healthApp.client.DrugApiClient;
 import com.ciembro.healthApp.domain.drug.Drug;
 import com.ciembro.healthApp.domain.drug.DrugDbResultDto;
-import com.ciembro.healthApp.domain.drug.DrugDto;
+import com.ciembro.healthApp.exception.DrugNotFoundException;
 import com.ciembro.healthApp.mapper.DrugMapper;
 import com.ciembro.healthApp.service.DrugService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +21,8 @@ public class DrugApiController {
     private final DrugMapper mapper;
     private final DrugService service;
 
-    @GetMapping("/drugs")
-    public void getDrugList(){
+    @GetMapping(value = "/drugs")
+    public void getDrugList(Authentication authentication){
         List<Drug> drugs = mapper.mapToDrugList(client.getDrugList());
         service.saveAll(drugs);
         System.out.println(drugs.size());
@@ -34,8 +34,11 @@ public class DrugApiController {
                 (service.findAllMatching(textToMatch));
     }
 
-    @PostMapping(value = "/drugs", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addToUserList(){
-
+    @GetMapping(value = "/drugs/leaflet")
+    public String getDrugLeaflet(@RequestBody DrugDbResultDto drugDto) throws DrugNotFoundException {
+        Drug drug = mapper.mapToDrug(drugDto);
+        return service.getLeafletUrl(drug);
     }
+
+
 }
