@@ -1,7 +1,6 @@
 package com.ciembro.healthApp.domain.drug;
 
-import com.ciembro.healthApp.domain.user.User;
-import lombok.AllArgsConstructor;
+import com.ciembro.healthApp.domain.sideeffect.SideEffect;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -67,6 +66,6 @@ public class Drug {
         this.leafletUrl = leafletUrl;
     }
 
-    @ManyToMany(mappedBy = "drugs")
-    List<User> users = new ArrayList<>();
+    @OneToMany(mappedBy = "drug")
+    List<SideEffect> sideEffects = new ArrayList<>();
 }

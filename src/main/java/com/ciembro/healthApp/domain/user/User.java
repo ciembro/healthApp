@@ -1,6 +1,7 @@
 package com.ciembro.healthApp.domain.user;
 
-import com.ciembro.healthApp.domain.drug.Drug;
+import com.ciembro.healthApp.domain.drug.DrugDto;
+import com.ciembro.healthApp.domain.sideeffect.SideEffect;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -39,17 +40,8 @@ public class User {
     @CreationTimestamp
     private LocalDateTime joiningDate;
 
-    @ManyToMany
-    @JoinTable(
-            name = "join_users_drugs",
-            joinColumns = {
-                    @JoinColumn(name = "user_id", referencedColumnName = "id")
-                },
-            inverseJoinColumns =  {
-                    @JoinColumn(name = "drug_id", referencedColumnName = "id")
-            }
-    )
-    private List<Drug> drugs = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<SideEffect> sideEffects = new ArrayList<>();
 
     public User(String username, String email, String password) {
         this.username = username;

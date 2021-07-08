@@ -2,6 +2,7 @@ package com.ciembro.healthApp.security;
 
 import com.ciembro.healthApp.domain.user.User;
 import com.ciembro.healthApp.repository.UserRepository;
+import com.ciembro.healthApp.security.domain.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,8 +1,8 @@
 package com.ciembro.healthApp.client;
 
 import com.ciembro.healthApp.config.DrugApiConfig;
-import com.ciembro.healthApp.domain.drug.DrugApiResponse;
-import com.ciembro.healthApp.domain.drug.DrugDto;
+import com.ciembro.healthApp.domain.drug.api.DrugApiResponse;
+import com.ciembro.healthApp.domain.drug.api.DrugJsonDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
@@ -19,16 +19,16 @@ public class DrugApiClient {
     private final DrugApiConfig drugApiConfig;
     private final RestTemplate restTemplate;
 
-    public List<DrugDto> getDrugList(){
+    public List<DrugJsonDto> getDrugList(){
         try {
-            List<DrugDto> drugs = new ArrayList<>();
+            List<DrugJsonDto> drugs = new ArrayList<>();
             DrugApiResponse response = restTemplate.getForObject(drugApiConfig.getDrugApiEndpoint(), DrugApiResponse.class);
             String last = response.getLinks().getLast();
 
             while (!response.getLinks().getSelf().equals(last)){
 
                 drugs.addAll(response.getDrugs().stream()
-                    .filter(d -> d.getDrugAttributes().getProductType().getValue().equals("Ludzki"))
+                    .filter(d -> d.getDrugJsonAttributes().getProductType().getValue().equals("Ludzki"))
                     .collect(Collectors.toList()));
                 String next = response.getLinks().getNext();
                 response = restTemplate.getForObject(next, DrugApiResponse.class);

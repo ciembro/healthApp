@@ -1,16 +1,14 @@
 package com.ciembro.healthApp.service;
 
 import com.ciembro.healthApp.domain.drug.Drug;
-import com.ciembro.healthApp.domain.drug.DrugDbResultDto;
 import com.ciembro.healthApp.domain.user.User;
 import com.ciembro.healthApp.exception.UserNotFoundException;
-import com.ciembro.healthApp.repository.DrugRepository;
+import com.ciembro.healthApp.domain.sideeffect.SideEffect;
+import com.ciembro.healthApp.repository.SideEffectRepository;
 import com.ciembro.healthApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserService {
@@ -19,7 +17,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private DrugRepository drugRepository;
+    private SideEffectRepository sideEffectRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -31,24 +29,17 @@ public class UserService {
 
     public void addDrugToUserList(String username, Drug drug) throws UserNotFoundException {
         User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
-        user.getDrugs().add(drug);
-        userRepository.save(user);
-        drug.getUsers().add(user);
-        drugRepository.save(drug);
+        SideEffect sideEffect = new SideEffect();
+        sideEffect.setUser(user);
+        sideEffect.setDrug(drug);
+        sideEffectRepository.save(sideEffect);
     }
 
     public void removeDrugFromUserList(String username, Drug drug) throws UserNotFoundException {
         User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
-        user.getDrugs().remove(drug);
-        userRepository.save(user);
-        drug.getUsers().remove(user);
-        drugRepository.save(drug);
+        SideEffect sideEffect = new SideEffect();
+        sideEffect.setUser(user);
+        sideEffect.setDrug(drug);
+        sideEffectRepository.save(sideEffect);
     }
-
-    public List<Drug> getUserDrugs(String username) throws UserNotFoundException {
-        User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
-        return user.getDrugs();
-    }
-
-
 }

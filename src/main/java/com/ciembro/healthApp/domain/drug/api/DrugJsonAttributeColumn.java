@@ -1,4 +1,4 @@
-package com.ciembro.healthApp.domain.drug;
+package com.ciembro.healthApp.domain.drug.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,10 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DrugAttributeColumn {
-
-//    @JsonProperty("repr")
-//    private String repr;
+public class DrugJsonAttributeColumn {
 
     @JsonProperty("val")
     private String value;

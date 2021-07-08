@@ -1,4 +1,4 @@
-package com.ciembro.healthApp.domain.drug;
+package com.ciembro.healthApp.domain.drug.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -14,5 +14,5 @@ public class DrugApiResponse {
     Links links;
 
     @JsonProperty("data")
-    List<DrugDto> drugs;
+    List<DrugJsonDto> drugs;
 }

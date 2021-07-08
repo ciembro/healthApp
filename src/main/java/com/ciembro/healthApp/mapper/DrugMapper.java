@@ -1,13 +1,11 @@
 package com.ciembro.healthApp.mapper;
 
 import com.ciembro.healthApp.domain.drug.Drug;
-import com.ciembro.healthApp.domain.drug.DrugDbResultDto;
 import com.ciembro.healthApp.domain.drug.DrugDto;
+import com.ciembro.healthApp.domain.drug.api.DrugJsonDto;
 import com.ciembro.healthApp.exception.DrugNotFoundException;
 import com.ciembro.healthApp.repository.DrugRepository;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,24 +17,24 @@ public class DrugMapper {
 
     private final DrugRepository drugRepository;
 
-    public Drug mapToDrug(DrugDto drugDto){
+    public Drug mapToDrug(DrugJsonDto drugJsonDto){
         return new Drug(
-                drugDto.getDrugAttributes().getTradeName().getValue(),
-                drugDto.getDrugAttributes().getCommonName().getValue(),
-                drugDto.getDrugAttributes().getDose().getValue(),
-                drugDto.getDrugAttributes().getBrand().getValue(),
-                drugDto.getDrugAttributes().getActiveSubstance().getValue(),
-                drugDto.getDrugAttributes().getLeafletUrl().getValue());
+                drugJsonDto.getDrugJsonAttributes().getTradeName().getValue(),
+                drugJsonDto.getDrugJsonAttributes().getCommonName().getValue(),
+                drugJsonDto.getDrugJsonAttributes().getDose().getValue(),
+                drugJsonDto.getDrugJsonAttributes().getBrand().getValue(),
+                drugJsonDto.getDrugJsonAttributes().getActiveSubstance().getValue(),
+                drugJsonDto.getDrugJsonAttributes().getLeafletUrl().getValue());
     }
 
-    public List<Drug> mapToDrugList(List<DrugDto> drugDtoList){
-        return  drugDtoList.stream()
+    public List<Drug> mapToDrugList(List<DrugJsonDto> drugJsonDtoList){
+        return  drugJsonDtoList.stream()
                 .map(this::mapToDrug)
                 .collect(Collectors.toList());
     }
 
-    public DrugDbResultDto mapFromDbToDrugDto(Drug drug){
-        return new DrugDbResultDto(drug.getId(),
+    public DrugDto mapFromDbToDrugDto(Drug drug){
+        return new DrugDto(drug.getId(),
                 drug.getTradeName(),
                 drug.getCommonName(),
                 drug.getDose(),
@@ -45,12 +43,12 @@ public class DrugMapper {
                 drug.getLeafletUrl());
     }
 
-    public Drug mapToDrug(DrugDbResultDto drugDto) throws DrugNotFoundException {
+    public Drug mapToDrug(DrugDto drugDto) throws DrugNotFoundException {
         return  drugRepository.findById(drugDto.getId()).
                 orElseThrow(DrugNotFoundException::new);
     }
 
-    public List<DrugDbResultDto> mapFromDbToDrugDtoList(List<Drug> drugs){
+    public List<DrugDto> mapFromDbToDrugDtoList(List<Drug> drugs){
         return drugs.stream()
                 .map(this::mapFromDbToDrugDto)
                 .collect(Collectors.toList());

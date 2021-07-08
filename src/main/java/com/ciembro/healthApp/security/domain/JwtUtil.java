@@ -1,4 +1,4 @@
-package com.ciembro.healthApp.security;
+package com.ciembro.healthApp.security.domain;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

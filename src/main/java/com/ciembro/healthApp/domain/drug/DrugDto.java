@@ -1,20 +1,18 @@
 package com.ciembro.healthApp.domain.drug;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+@AllArgsConstructor
 public class DrugDto {
 
-    @JsonProperty("id")
-    private String id;
-
-    @JsonProperty("attributes")
-    private DrugAttributes drugAttributes;
-
+    private long id;
+    private String commonName;
+    private String tradeName;
+    private String dose;
+    private String brand;
+    private String activeSubstance;
+    private String leafletUrl;
 
 }
