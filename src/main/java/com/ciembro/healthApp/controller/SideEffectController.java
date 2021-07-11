@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class SideEffectController {
 
-    private final JwtUtil jwtUtil;
     private final SideEffectService sideEffectService;
     private final SideEffectMapper sideEffectMapper;
     private final DrugMapper drugMapper;
@@ -28,17 +27,14 @@ public class SideEffectController {
 
 
     @PutMapping("/effects")
-    public SideEffectDto updateSideEffect(Authentication authentication,
-                                       @RequestHeader(name="Authorization") String token,
-                                       @RequestBody SideEffectDto sideEffectDto) throws DrugNotFoundException, UserNotFoundException {
+    public SideEffectDto updateSideEffect(Authentication authentication, @RequestBody SideEffectDto sideEffectDto)
+            throws DrugNotFoundException, UserNotFoundException {
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        if (jwtUtil.validateToken(token, userDetails)){
-            SideEffect se = sideEffectMapper.mapToSideEffect(sideEffectDto);
-            se = sideEffectService.save(se);
-            return sideEffectMapper.mapToSideEffectDto(se);
-        }
-        return null;
+        SideEffect se = sideEffectMapper.mapToSideEffect(sideEffectDto);
+        se = sideEffectService.save(se);
+        return sideEffectMapper.mapToSideEffectDto(se);
+
     }
 
 }

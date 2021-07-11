@@ -34,4 +34,7 @@ public class SideEffectService {
         return sideEffectRepository.save(sideEffect);
     }
 
+    void removeDrugFromUserList(long userId, long drugId){
+        sideEffectRepository.removeDrugFromUserList(userId, drugId);
+    }
 }

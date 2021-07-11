@@ -15,6 +15,11 @@ import javax.persistence.*;
                         query = "select distinct drug_id from side_effects " +
                                 "where user_id = :userId",
                         resultClass = Drug.class
+                ),
+                @NamedNativeQuery(
+                        name = "SideEffect.removeDrugFromUserList",
+                        query = "delete from side_effects " +
+                                "where user_id = :userId and drug_id = :drugId"
                 )
         }
 )

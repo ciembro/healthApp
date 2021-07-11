@@ -6,6 +6,7 @@ import com.ciembro.healthApp.security.domain.JwtUtil;
 import com.ciembro.healthApp.security.MyUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -37,7 +38,8 @@ public class AuthenticationController {
                     )
             );
         } catch (BadCredentialsException e) {
-            throw new Exception("Incorrect username or password", e);
+//            throw new Exception("Incorrect username or password", e);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(request.getUsername());

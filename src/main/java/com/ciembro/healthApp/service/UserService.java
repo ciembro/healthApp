@@ -27,19 +27,5 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void addDrugToUserList(String username, Drug drug) throws UserNotFoundException {
-        User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
-        SideEffect sideEffect = new SideEffect();
-        sideEffect.setUser(user);
-        sideEffect.setDrug(drug);
-        sideEffectRepository.save(sideEffect);
-    }
 
-    public void removeDrugFromUserList(String username, Drug drug) throws UserNotFoundException {
-        User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
-        SideEffect sideEffect = new SideEffect();
-        sideEffect.setUser(user);
-        sideEffect.setDrug(drug);
-        sideEffectRepository.save(sideEffect);
-    }
 }
