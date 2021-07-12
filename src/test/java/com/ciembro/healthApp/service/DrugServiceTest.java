@@ -1,4 +1,4 @@
-package com.ciembro.healthApp.drug.service;
+package com.ciembro.healthApp.service;
 
 
 import com.ciembro.healthApp.domain.drug.Drug;
@@ -8,7 +8,6 @@ import com.ciembro.healthApp.exception.UserNotFoundException;
 import com.ciembro.healthApp.repository.DrugRepository;
 import com.ciembro.healthApp.repository.SideEffectRepository;
 import com.ciembro.healthApp.repository.UserRepository;
-import com.ciembro.healthApp.service.DrugService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest()
-
 public class DrugServiceTest {
 
     @Autowired

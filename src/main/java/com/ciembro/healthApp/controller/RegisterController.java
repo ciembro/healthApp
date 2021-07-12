@@ -23,12 +23,12 @@ public class RegisterController {
     private final UserValidator userValidator;
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void registerUser(@RequestBody UserToRegisterDto userDto) throws IncorrectUserDetailsException {
+    public boolean registerUser(@RequestBody UserToRegisterDto userDto){
         if (userValidator.validateUserDetails(userDto)){
             User user = mapper.mapToUser(userDto);
             userService.save(user);
-        } else {
-            throw new IncorrectUserDetailsException();
+            return true;
         }
+        return false;
     }
 }
