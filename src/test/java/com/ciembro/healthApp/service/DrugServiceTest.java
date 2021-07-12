@@ -141,7 +141,7 @@ public class DrugServiceTest {
     }
 
     @Test
-    void shouldRemoveDrugFromUserList(){
+    void shouldRemoveDrugFromUserList() throws UserNotFoundException {
         Drug drug = new Drug(
                 "test",
                 "test",
@@ -158,7 +158,7 @@ public class DrugServiceTest {
         sideEffectRepository.save(sideEffect);
 
         //when
-        sideEffectRepository.removeDrugFromUserList(user.getId(), drug.getId());
+        drugService.removeDrugFromUserList(user.getUsername(), drug);
 
         //then
         assertEquals(0, user.getSideEffects().size());

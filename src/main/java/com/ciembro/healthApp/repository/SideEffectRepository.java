@@ -16,9 +16,12 @@ import java.util.List;
 @Repository
 public interface SideEffectRepository extends CrudRepository<SideEffect, Long> {
 
-    List<Drug> getUserDrugs(@Param("userId") long userId);
+    List<Long> getUserDrugs(@Param("userId") long userId);
 
     @Modifying
     @Query(nativeQuery = true)
     void removeDrugFromUserList(@Param("userId") long userId, @Param("drugId") long drugId);
+
+    @Query(nativeQuery = true)
+    List<SideEffect> getSideEffectsByDrugId (@Param("userId") long userId, @Param("drugId") long drugId);
 }

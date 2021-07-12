@@ -21,11 +21,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DrugController {
 
-    private final UserService userService;
     private final DrugMapper drugMapper;
     private final DrugService drugService;
     private final SideEffectService sideEffectService;
-
 
     @GetMapping("/drugs/{textToMatch}")
     public List<DrugDto> getByName(@PathVariable String textToMatch){
@@ -61,7 +59,6 @@ public class DrugController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         List<Drug> drugs = sideEffectService.getUserDrugs(userDetails.getUsername());
         return drugMapper.mapFromDbToDrugDtoList(drugs);
-
     }
 
 }

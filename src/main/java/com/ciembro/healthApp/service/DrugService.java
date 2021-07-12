@@ -32,10 +32,6 @@ public class DrugService {
         return drugRepository.save(drug);
     }
 
-    public void deleteById(Long id){
-        drugRepository.deleteById(id);
-    }
-
     public List<Drug> findByActiveSubstanceFrag(String substanceNameFrag){
         return drugRepository.findByActiveSubstanceFrag(substanceNameFrag);
     }
