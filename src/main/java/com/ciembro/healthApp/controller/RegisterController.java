@@ -2,7 +2,6 @@ package com.ciembro.healthApp.controller;
 
 import com.ciembro.healthApp.domain.user.User;
 import com.ciembro.healthApp.domain.user.UserToRegisterDto;
-import com.ciembro.healthApp.exception.IncorrectUserDetailsException;
 import com.ciembro.healthApp.mapper.UserMapper;
 import com.ciembro.healthApp.service.UserService;
 import com.ciembro.healthApp.service.UserValidator;

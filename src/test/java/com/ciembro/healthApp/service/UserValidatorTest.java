@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest()
@@ -25,7 +24,7 @@ class UserValidatorTest {
     @Test
     void testValidateUserWhenCorrectData(){
         //given
-        UserToRegisterDto user = new UserToRegisterDto("user", "user@mail.com", "pass");
+        UserToRegisterDto user = new UserToRegisterDto("new user", "user@mail.com", "pass");
         //when
         boolean isCorrect = userValidator.validateUserDetails(user);
         //then
@@ -65,8 +64,8 @@ class UserValidatorTest {
     @Test
     void testValidateUserWhenUsernameTaken(){
         //given
-        UserToRegisterDto userToRegister = new UserToRegisterDto("user", "user@mail.com", "pass");
-        User user = new User("user", "user@mail.com", "password");
+        UserToRegisterDto userToRegister = new UserToRegisterDto("reg user", "user@mail.com", "pass");
+        User user = new User("reg user", "user@mail.com", "password");
         user = userRepository.save(user);
         //when
         boolean isCorrect = userValidator.validateUserDetails(userToRegister);

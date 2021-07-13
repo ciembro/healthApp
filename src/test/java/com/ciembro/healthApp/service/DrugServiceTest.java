@@ -165,6 +165,7 @@ public class DrugServiceTest {
         assertEquals(0, drug.getSideEffects().size());
 
         //cleanup
+        sideEffectRepository.deleteById(sideEffect.getId());
        userRepository.deleteById(user.getId());
        drugRepository.deleteById(drug.getId());
 

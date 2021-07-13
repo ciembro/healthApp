@@ -3,7 +3,7 @@ package com.ciembro.healthApp.service;
 import com.ciembro.healthApp.domain.drug.Drug;
 import com.ciembro.healthApp.domain.user.User;
 import com.ciembro.healthApp.domain.sideeffect.SideEffect;
-import com.ciembro.healthApp.exception.DrugNotFoundException;
+import com.ciembro.healthApp.exception.SideEffectNotFoundException;
 import com.ciembro.healthApp.exception.UserNotFoundException;
 import com.ciembro.healthApp.repository.DrugRepository;
 import com.ciembro.healthApp.repository.SideEffectRepository;
@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,12 +38,14 @@ public class SideEffectService {
         return sideEffectRepository.save(sideEffect);
     }
 
-    public void removeDrugFromUserList(long userId, long drugId){
-        sideEffectRepository.removeDrugFromUserList(userId, drugId);
+    public void removeDrugFromUserList(long sideEffectId){
+        sideEffectRepository.removeDrugFromUserList(sideEffectId);
     }
 
-    public void deleteById(long sideEffectId){
-        sideEffectRepository.deleteById(sideEffectId);
+    public void delete(long sideEffectId) throws SideEffectNotFoundException {
+        SideEffect sideEffect = sideEffectRepository.findById(sideEffectId).orElseThrow(SideEffectNotFoundException::new);
+        sideEffect.setRemoved(true);
+        sideEffectRepository.save(sideEffect);
     }
 
     public List<SideEffect> getSideEffectsByDrugId(String username, long drugId) throws UserNotFoundException {

@@ -32,6 +32,10 @@ public class DrugService {
         return drugRepository.save(drug);
     }
 
+    public void deleteById(Long id){
+        drugRepository.deleteById(id);
+    }
+
     public List<Drug> findByActiveSubstanceFrag(String substanceNameFrag){
         return drugRepository.findByActiveSubstanceFrag(substanceNameFrag);
     }
@@ -64,8 +68,8 @@ public class DrugService {
     }
 
     public void removeDrugFromUserList(String username, Drug drug) throws UserNotFoundException {
-        User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
-        sideEffectService.removeDrugFromUserList(user.getId(), drug.getId());
+//        User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
+//        sideEffectService.removeDrugFromUserList(user.getId(), drug.getId());
     }
 
 

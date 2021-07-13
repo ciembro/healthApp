@@ -1,15 +1,12 @@
 package com.ciembro.healthApp.controller;
 
-import com.ciembro.healthApp.domain.drug.Drug;
-import com.ciembro.healthApp.domain.drug.DrugDto;
 import com.ciembro.healthApp.domain.sideeffect.SideEffect;
 import com.ciembro.healthApp.domain.sideeffect.SideEffectDto;
 import com.ciembro.healthApp.domain.sideeffect.SideEffectToAddDto;
 import com.ciembro.healthApp.exception.DrugNotFoundException;
+import com.ciembro.healthApp.exception.SideEffectNotFoundException;
 import com.ciembro.healthApp.exception.UserNotFoundException;
-import com.ciembro.healthApp.mapper.DrugMapper;
 import com.ciembro.healthApp.mapper.SideEffectMapper;
-import com.ciembro.healthApp.security.domain.JwtUtil;
 import com.ciembro.healthApp.service.SideEffectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -42,9 +39,9 @@ public class SideEffectController {
     }
 
     @DeleteMapping(value = "/effects", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteSideEffectForDrug(SideEffectDto sideEffectDto) throws UserNotFoundException, DrugNotFoundException {
+    public void deleteSideEffectForDrug(@RequestBody SideEffectDto sideEffectDto) throws UserNotFoundException, DrugNotFoundException, SideEffectNotFoundException {
         SideEffect sideEffect = sideEffectMapper.mapToSideEffect(sideEffectDto);
-        sideEffectService.deleteById(sideEffect.getId());
+        sideEffectService.delete(sideEffect.getId());
     }
 
     @PutMapping(value = "/effects", consumes = MediaType.APPLICATION_JSON_VALUE)

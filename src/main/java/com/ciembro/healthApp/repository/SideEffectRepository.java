@@ -20,7 +20,7 @@ public interface SideEffectRepository extends CrudRepository<SideEffect, Long> {
 
     @Modifying
     @Query(nativeQuery = true)
-    void removeDrugFromUserList(@Param("userId") long userId, @Param("drugId") long drugId);
+    void removeDrugFromUserList(@Param("id") long sideEffectId);
 
     @Query(nativeQuery = true)
     List<SideEffect> getSideEffectsByDrugId (@Param("userId") long userId, @Param("drugId") long drugId);

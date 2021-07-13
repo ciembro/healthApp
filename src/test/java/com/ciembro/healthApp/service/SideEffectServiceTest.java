@@ -60,5 +60,7 @@ class SideEffectServiceTest {
 
         //cleanup
         sideEffectRepository.deleteById(sideEffect.getId());
+        userRepository.deleteById(user.getId());
+        drugRepository.deleteById(drug.getId());
     }
 }

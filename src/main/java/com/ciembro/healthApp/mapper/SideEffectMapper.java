@@ -40,6 +40,7 @@ public class SideEffectMapper {
         return new SideEffectDto(sideEffect.getId(),
                 sideEffect.getUser().getUsername(),
                 sideEffect.getDrug().getId(),
+                sideEffect.getCreationDate(),
                 sideEffect.getDetails());
     }
 

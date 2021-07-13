@@ -1,7 +1,6 @@
 package com.ciembro.healthApp.domain.sideeffect;
 
 import com.ciembro.healthApp.domain.drug.Drug;
-import com.ciembro.healthApp.domain.drug.DrugDto;
 import com.ciembro.healthApp.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,24 +15,22 @@ import java.time.LocalDateTime;
                 @NamedNativeQuery(
                         name = "SideEffect.getUserDrugs",
                         query = "select distinct drug_id from side_effects " +
-                                "where user_id = :userId"
-//                        resultClass = Long.class
+                                "where user_id = :userId and is_removed = false"
                 ),
                 @NamedNativeQuery(
                         name = "SideEffect.removeDrugFromUserList",
-                        query = "delete from side_effects " +
-                                "where user_id = :userId and drug_id = :drugId"
+                        query = "update side_effects set is_removed = true " +
+                                "where id = :id"
                 ),
                 @NamedNativeQuery(
                         name = "SideEffect.getSideEffectsByDrugId",
                         query = "select * from side_effects " +
                                 "where user_id = :userId and drug_id = :drugId " +
-                                "and details LIKE NOT NULL",
+                                "and details IS NOT NULL and is_removed = false",
                         resultClass = SideEffect.class
                 )
         }
 )
-
 
 @Data
 @NoArgsConstructor
@@ -62,10 +59,14 @@ public class SideEffect {
     @Column
     private String details;
 
+    @Column
+    boolean isRemoved;
+
     public SideEffect(long id, User user, Drug drug, String details) {
         this.id = id;
         this.user = user;
         this.drug = drug;
         this.details = details;
+        this.isRemoved = false;
     }
 }
