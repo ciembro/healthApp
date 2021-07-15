@@ -32,8 +32,6 @@ public class DrugServiceTest {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private SideEffectRepository sideEffectRepository;
 
     @Test
     void testSave(){
@@ -66,15 +64,15 @@ public class DrugServiceTest {
     }
 
     @Test
-    void testFindByCommonNameFrag(){
+    void testFindInternationalNameFrag(){
         //given
         Drug drug = createDrug();
 
         drug = drugRepository.save(drug);
         Long id = drug.getId();
         //when
-        List<Drug> foundDrugsAllName = drugService.findByCommonNameFrag("testCommonName");
-        List<Drug> foundDrugsFragName = drugService.findByCommonNameFrag("Common");
+        List<Drug> foundDrugsAllName = drugService.findByInternationalNameFrag("testCommonName");
+        List<Drug> foundDrugsFragName = drugService.findByInternationalNameFrag("Common");
         //then
         assertEquals(1, foundDrugsAllName.size());
         assertEquals(1, foundDrugsFragName.size());
@@ -114,66 +112,9 @@ public class DrugServiceTest {
         drugRepository.deleteById(id);
     }
 
-    @Test
-    void shouldAddDrugToUserList() throws UserNotFoundException {
-        //given
-        Drug drug = new Drug(
-                "test",
-                "test",
-                "test",
-                "test",
-                "test",
-                "http://test.com");
-        drug = drugRepository.save(drug);
-        User user = createUser();
-        user = userRepository.save(user);
-
-        //when
-        SideEffect sideEffect = drugService.addDrugToUserList(user.getUsername(), drug);
-
-        //then
-        assertEquals(sideEffect.getUser().getId(), user.getId());
-        assertEquals(sideEffect.getDrug().getId(), drug.getId());
-
-        //cleanup
-        sideEffectRepository.deleteById(sideEffect.getId());
-        userRepository.deleteById(user.getId());
-    }
-
-    @Test
-    void shouldRemoveDrugFromUserList() throws UserNotFoundException {
-        Drug drug = new Drug(
-                "test",
-                "test",
-                "test",
-                "test",
-                "test",
-                "http://test.com");
-        drug = drugRepository.save(drug);
-        User user = createUser();
-        user = userRepository.save(user);
-        SideEffect sideEffect = new SideEffect();
-        sideEffect.setUser(user);
-        sideEffect.setDrug(drug);
-        sideEffectRepository.save(sideEffect);
-
-        //when
-        drugService.removeDrugFromUserList(user.getUsername(), drug);
-
-        //then
-        assertEquals(0, user.getSideEffects().size());
-        assertEquals(0, drug.getSideEffects().size());
-
-        //cleanup
-        sideEffectRepository.deleteById(sideEffect.getId());
-       userRepository.deleteById(user.getId());
-       drugRepository.deleteById(drug.getId());
-
-    }
-
 
     private Drug createDrug(){
-       return new Drug(
+       return new Drug(1,
                 "testTradeName",
                 "testCommonName",
                 "testDose",

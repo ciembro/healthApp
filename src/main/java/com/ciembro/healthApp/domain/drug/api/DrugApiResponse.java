@@ -11,7 +11,7 @@ import java.util.List;
 public class DrugApiResponse {
 
     @JsonProperty("links")
-    Links links;
+    PaginationLinks paginationLinks;
 
     @JsonProperty("data")
     List<DrugJsonDto> drugs;

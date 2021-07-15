@@ -40,8 +40,6 @@ public class User {
     @CreationTimestamp
     private LocalDateTime joiningDate;
 
-    @OneToMany(mappedBy = "user")
-    private List<SideEffect> sideEffects = new ArrayList<>();
 
     public User(String username, String email, String password) {
         this.username = username;

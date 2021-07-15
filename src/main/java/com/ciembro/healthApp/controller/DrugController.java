@@ -5,15 +5,15 @@ import com.ciembro.healthApp.domain.drug.DrugDto;
 import com.ciembro.healthApp.exception.DrugNotFoundException;
 import com.ciembro.healthApp.exception.UserNotFoundException;
 import com.ciembro.healthApp.mapper.DrugMapper;
+import com.ciembro.healthApp.service.DrugApiService;
 import com.ciembro.healthApp.service.DrugService;
-import com.ciembro.healthApp.service.SideEffectService;
-import com.ciembro.healthApp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,18 +23,17 @@ public class DrugController {
 
     private final DrugMapper drugMapper;
     private final DrugService drugService;
-    private final SideEffectService sideEffectService;
 
-    @GetMapping("/drugs/{textToMatch}")
-    public List<DrugDto> getByName(@PathVariable String textToMatch){
+    @GetMapping("/drugs/search/{text}")
+    public List<DrugDto> searchMatchingDrugs(@PathVariable String text){
         return drugMapper.mapFromDbToDrugDtoList
-                (drugService.findAllMatching(textToMatch));
+                (drugService.findAllMatching(text));
     }
 
-    @GetMapping(value = "/drugs/leaflet")
-    public String getDrugLeaflet(@RequestBody DrugDto drugDto) throws DrugNotFoundException {
-        Drug drug = drugMapper.mapToDrug(drugDto);
-        return drugService.getLeafletUrl(drug);
+    @GetMapping("/drugs/{id}")
+    public DrugDto getDrugById(@PathVariable long id) throws DrugNotFoundException {
+        Drug drug = drugService.findById(id);
+        return drugMapper.mapFromDbToDrugDto(drug);
     }
 
     @PostMapping(value = "/drugs", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -55,10 +54,9 @@ public class DrugController {
 
     @GetMapping(value = "/drugs/all")
     public List<DrugDto> getUserDrugs(Authentication authentication) throws UserNotFoundException {
-
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        List<Drug> drugs = sideEffectService.getUserDrugs(userDetails.getUsername());
-        return drugMapper.mapFromDbToDrugDtoList(drugs);
+        //TODO
+        return new ArrayList<>();
     }
 
 }

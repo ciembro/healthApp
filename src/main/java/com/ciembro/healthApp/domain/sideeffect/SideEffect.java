@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @NamedNativeQueries(
@@ -20,7 +21,7 @@ import java.time.LocalDateTime;
                 @NamedNativeQuery(
                         name = "SideEffect.removeDrugFromUserList",
                         query = "update side_effects set is_removed = true " +
-                                "where id = :id"
+                                "where user_id = :userId and drug_id = :drugId"
                 ),
                 @NamedNativeQuery(
                         name = "SideEffect.getSideEffectsByDrugId",
@@ -54,7 +55,7 @@ public class SideEffect {
 
     @Column
     @CreationTimestamp
-    private LocalDateTime creationDate;
+    private LocalDate creationDate;
 
     @Column
     private String details;

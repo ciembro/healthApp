@@ -7,8 +7,6 @@ import com.ciembro.healthApp.domain.user.User;
 import com.ciembro.healthApp.exception.DrugNotFoundException;
 import com.ciembro.healthApp.mapper.DrugMapper;
 import com.ciembro.healthApp.repository.UserRepository;
-import com.ciembro.healthApp.service.SideEffectService;
-import com.ciembro.healthApp.service.UserService;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +43,6 @@ class DrugControllerTest {
 
     @MockBean
     private  DrugMapper drugMapper;
-
-    @MockBean
-    private  SideEffectService sideEffectService;
 
     private String token;
     private User user;
@@ -113,9 +108,9 @@ class DrugControllerTest {
     private Drug createDrug(){
         Drug drug = new Drug();
         drug.setId(1L);
-        drug.setCommonName("common name");
+        drug.setInternationalName("common name");
         drug.setTradeName("tradeName");
-        drug.setDose("dose");
+        drug.setDosage("dose");
         drug.setBrand("brand");
         drug.setActiveSubstance("active substance");
         drug.setLeafletUrl("http://test.com");
@@ -124,6 +119,7 @@ class DrugControllerTest {
 
     private DrugDto createDrugDto(){
         return new DrugDto (1L,
+                1,
                 "common name",
                 "trade name",
                 "dose",

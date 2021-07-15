@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,8 @@ import java.util.List;
                 resultClass = Drug.class
         ),
         @NamedNativeQuery(
-                name = "Drug.findByCommonNameFrag",
-                query = "select * from drugs where common_name like concat('%',:frag,'%')",
+                name = "Drug.findByInternationalNameFrag",
+                query = "select * from drugs where international_name like concat('%',:frag,'%')",
                 resultClass = Drug.class
         ),
         @NamedNativeQuery(
@@ -37,35 +38,40 @@ public class Drug {
     @Column(unique = true)
     private Long id;
 
+    @Column(nullable = false)
+    private int uniqueDrugId;
+
     @Column
     private String tradeName;
 
     @Column
-    private String commonName;
+    private String internationalName;
 
-    @Column
-    private String dose;
+    @Column(length = 1000)
+    private String dosage;
 
     @Column
     private String brand;
 
-    @Column
+    @Column(length = 1000)
     private String activeSubstance;
 
     @Column
     private String leafletUrl;
 
+    @Column
+    private LocalDate lastSynchAt;
 
-    public Drug( String tradeName, String commonName,
-                String dose, String brand, String activeSubstance, String leafletUrl) {
+
+    public Drug(int uniqueDrugId, String tradeName, String internationalName,
+                String dosage, String brand, String activeSubstance, String leafletUrl) {
+        this.uniqueDrugId = uniqueDrugId;
         this.tradeName = tradeName;
-        this.commonName = commonName;
-        this.dose = dose;
+        this.internationalName = internationalName;
+        this.dosage = dosage;
         this.brand = brand;
         this.activeSubstance = activeSubstance;
         this.leafletUrl = leafletUrl;
     }
 
-    @OneToMany(mappedBy = "drug")
-    List<SideEffect> sideEffects = new ArrayList<>();
 }

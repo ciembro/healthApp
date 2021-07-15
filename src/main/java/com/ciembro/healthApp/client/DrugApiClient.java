@@ -19,23 +19,25 @@ public class DrugApiClient {
     private final DrugApiConfig drugApiConfig;
     private final RestTemplate restTemplate;
 
-    public List<DrugJsonDto> getDrugList(){
+    public List<DrugJsonDto> loadDrugListFromApi(){
         try {
             List<DrugJsonDto> drugs = new ArrayList<>();
             DrugApiResponse response = restTemplate.getForObject(drugApiConfig.getDrugApiEndpoint(), DrugApiResponse.class);
-            String last = response.getLinks().getLast();
 
-            while (!response.getLinks().getSelf().equals(last)){
+            if (response != null){
+                String last = response.getPaginationLinks().getLast();
+                while (response != null && !response.getPaginationLinks().getSelf().equals(last)){
 
-                drugs.addAll(response.getDrugs().stream()
-                    .filter(d -> d.getDrugJsonAttributes().getProductType().getValue().equals("Ludzki"))
-                    .collect(Collectors.toList()));
-                String next = response.getLinks().getNext();
-                response = restTemplate.getForObject(next, DrugApiResponse.class);
+                    drugs.addAll(response.getDrugs().stream()
+                            .filter(d -> d.getDrugJsonAttributes().getProductType().getValue().equals("Ludzki"))
+                            .collect(Collectors.toList()));
+                    String next = response.getPaginationLinks().getNext();
+                    response = restTemplate.getForObject(next, DrugApiResponse.class);
 
+                }
             }
-
             return drugs;
+
         } catch (RestClientException e){
             System.out.println(e.getMessage());
             return new ArrayList<>();

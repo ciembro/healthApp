@@ -18,13 +18,21 @@ public class DrugMapper {
     private final DrugRepository drugRepository;
 
     public Drug mapToDrug(DrugJsonDto drugJsonDto){
+        int uniqueDrugId = drugJsonDto.getDrugJsonAttributes().getUniqueDrugId().getValue();
+        String tradeName = drugJsonDto.getDrugJsonAttributes().getTradeName().getValue();
+        String internationalName = drugJsonDto.getDrugJsonAttributes().getInternationalName().getValue();
+        String dosage = drugJsonDto.getDrugJsonAttributes().getDosage().getValue();
+        String brand = drugJsonDto.getDrugJsonAttributes().getBrand().getValue();
+        String activeSubstance = drugJsonDto.getDrugJsonAttributes().getActiveSubstance().getValue();
+        String leafletUrl = drugJsonDto.getDrugJsonAttributes().getLeafletUrl().getValue();
         return new Drug(
-                drugJsonDto.getDrugJsonAttributes().getTradeName().getValue(),
-                drugJsonDto.getDrugJsonAttributes().getCommonName().getValue(),
-                drugJsonDto.getDrugJsonAttributes().getDose().getValue(),
-                drugJsonDto.getDrugJsonAttributes().getBrand().getValue(),
-                drugJsonDto.getDrugJsonAttributes().getActiveSubstance().getValue(),
-                drugJsonDto.getDrugJsonAttributes().getLeafletUrl().getValue());
+                uniqueDrugId,
+                tradeName == null ? "-" : tradeName,
+                internationalName == null ? "-" : internationalName,
+                dosage == null ? "-" : dosage,
+                brand == null ? "-" : brand,
+                activeSubstance == null ? "-" : activeSubstance,
+                leafletUrl == null ? "-" : leafletUrl);
     }
 
     public List<Drug> mapToDrugList(List<DrugJsonDto> drugJsonDtoList){
@@ -35,9 +43,10 @@ public class DrugMapper {
 
     public DrugDto mapFromDbToDrugDto(Drug drug){
         return new DrugDto(drug.getId(),
+                drug.getUniqueDrugId(),
                 drug.getTradeName(),
-                drug.getCommonName(),
-                drug.getDose(),
+                drug.getInternationalName(),
+                drug.getDosage(),
                 drug.getBrand(),
                 drug.getActiveSubstance(),
                 drug.getLeafletUrl());

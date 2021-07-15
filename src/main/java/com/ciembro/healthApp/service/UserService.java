@@ -17,9 +17,6 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private SideEffectRepository sideEffectRepository;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public User save(User user){

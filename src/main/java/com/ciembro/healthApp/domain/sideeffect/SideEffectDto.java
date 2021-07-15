@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -14,6 +14,6 @@ public class SideEffectDto {
     private long id;
     private String username;
     private long drugId;
-    private LocalDateTime creationDate;
+    private LocalDate creationDate;
     private String details;
 }
