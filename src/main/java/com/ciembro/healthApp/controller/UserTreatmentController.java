@@ -1,35 +1,49 @@
 package com.ciembro.healthApp.controller;
 
+import com.ciembro.healthApp.domain.CreatedUserTreatmentDto;
 import com.ciembro.healthApp.domain.UserTreatmentDto;
+import com.ciembro.healthApp.exception.DrugNotFoundException;
+import com.ciembro.healthApp.exception.UserNotFoundException;
+import com.ciembro.healthApp.facade.UserTreatmentFacade;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("v1/treatment")
+@RequiredArgsConstructor
 public class UserTreatmentController {
 
-    @PostMapping()
-    public UserTreatmentDto createUserTreatment(){
+    private final UserTreatmentFacade facade;
 
-        return new UserTreatmentDto();
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public CreatedUserTreatmentDto createUserTreatment(UserTreatmentDto treatmentDto)
+                        throws UserNotFoundException, DrugNotFoundException {
+
+        return facade.createUserTreatment(treatmentDto);
     }
 
-    @PutMapping()
-    public UserTreatmentDto updateUserTreatment(){
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public CreatedUserTreatmentDto updateUserTreatment(CreatedUserTreatmentDto treatmentDto)
+                        throws UserNotFoundException, DrugNotFoundException {
 
-        return new UserTreatmentDto();
+        return facade.updateUserTreatment(treatmentDto);
     }
 
-    @DeleteMapping
-    public void deleteUserTreatment(){
+    @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteUserTreatment(CreatedUserTreatmentDto treatmentDto)
+                        throws UserNotFoundException, DrugNotFoundException {
 
+        facade.deleteUserTreatment(treatmentDto);
     }
 
-    @GetMapping
-    public List<UserTreatmentDto> getAllUserTreatments(){
+    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<CreatedUserTreatmentDto> getAllUserTreatments(Authentication authentication)
+                        throws UserNotFoundException {
 
-        return new ArrayList<>();
+        return facade.getAllUserTreatments(authentication);
     }
 }

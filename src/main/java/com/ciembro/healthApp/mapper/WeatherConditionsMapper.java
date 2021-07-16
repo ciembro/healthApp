@@ -1,6 +1,7 @@
 package com.ciembro.healthApp.mapper;
 
 import com.ciembro.healthApp.domain.weather.WeatherConditions;
+import com.ciembro.healthApp.domain.weather.WeatherConditionsDto;
 import com.ciembro.healthApp.domain.weather.api.WeatherConditionsApiDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,19 @@ public class WeatherConditionsMapper {
         weather.setWindKph(weatherDto.getCurrent().getWindKph());
 
         return weather;
+    }
+
+    public WeatherConditionsDto mapToWeatherConditionsDto(WeatherConditions weather){
+        WeatherConditionsDto dto = new WeatherConditionsDto();
+        dto.setId(weather.getId());
+        dto.setLocation(weather.getLocation());
+        dto.setWeatherText(weather.getWeatherText());
+        dto.setIconUrl(weather.getIconUrl());
+        dto.setTemp(weather.getTemp());
+        dto.setTempFeelsLike(weather.getTempFeelsLike());
+        dto.setHumidity(weather.getHumidity());
+        dto.setPressure(weather.getPressure());
+        dto.setWindKph(weather.getWindKph());
+        return dto;
     }
 }

@@ -17,7 +17,7 @@ public class SideEffect {
     @Column
     private long id;
 
-    @Column
+    @Column(length = 500)
     private String text;
 
     @ManyToMany(mappedBy = "sideEffects")

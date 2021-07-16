@@ -1,8 +1,66 @@
 package com.ciembro.healthApp.mapper;
 
+import com.ciembro.healthApp.domain.CreatedUserTreatmentDto;
+import com.ciembro.healthApp.domain.UserTreatment;
+import com.ciembro.healthApp.domain.UserTreatmentDto;
+import com.ciembro.healthApp.domain.drug.Drug;
+import com.ciembro.healthApp.domain.user.User;
+import com.ciembro.healthApp.exception.DrugNotFoundException;
+import com.ciembro.healthApp.exception.UserNotFoundException;
+import com.ciembro.healthApp.repository.DrugRepository;
+import com.ciembro.healthApp.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserTreatmentMapper {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private DrugRepository drugRepository;
+
+    public UserTreatment mapToUserTreatment(UserTreatmentDto dto) throws UserNotFoundException, DrugNotFoundException {
+        User user = userRepository.findByUsername(dto.getUsername()).orElseThrow(UserNotFoundException::new);
+        Drug drug = drugRepository.findById(dto.getDrugId()).orElseThrow(DrugNotFoundException::new);
+        UserTreatment userTreatment = new UserTreatment();
+        userTreatment.setUser(user);
+        userTreatment.setDrug(drug);
+        userTreatment.setStartedAt(dto.getStartedAt());
+        userTreatment.setFinishedAt(dto.getFinishedAt());
+        return userTreatment;
+    }
+
+    public UserTreatment mapToUserTreatment(CreatedUserTreatmentDto dto) throws UserNotFoundException, DrugNotFoundException {
+        User user = userRepository.findByUsername(dto.getUsername()).orElseThrow(UserNotFoundException::new);
+        Drug drug = drugRepository.findById(dto.getDrugId()).orElseThrow(DrugNotFoundException::new);
+        UserTreatment userTreatment = new UserTreatment();
+        userTreatment.setId(dto.getId());
+        userTreatment.setUser(user);
+        userTreatment.setDrug(drug);
+        userTreatment.setStartedAt(dto.getStartedAt());
+        userTreatment.setFinishedAt(dto.getFinishedAt());
+        return userTreatment;
+    }
+
+    public CreatedUserTreatmentDto mapToCreatedUserTreatmentDto(UserTreatment treatment){
+        CreatedUserTreatmentDto dto = new CreatedUserTreatmentDto();
+        dto.setId(treatment.getId());
+        dto.setUsername(treatment.getUser().getUsername());
+        dto.setDrugId(treatment.getDrug().getId());
+        dto.setStartedAt(treatment.getStartedAt());
+        dto.setFinishedAt(treatment.getFinishedAt());
+        return dto;
+    }
+
+    public List<CreatedUserTreatmentDto> mapToCreatedUserTreatmentDtoList(List<UserTreatment> treatments){
+        return treatments.stream()
+                .map(this::mapToCreatedUserTreatmentDto)
+                .collect(Collectors.toList());
+    }
 
 }

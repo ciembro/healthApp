@@ -4,25 +4,26 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class InsightsDto {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
+public class CreatedInsightsDto {
 
+    private long id;
+    private long weatherId;
     private String username;
     private LocalDate creationDate;
     private Set<EmotionalStateDto> emotions;
     private Set<SideEffectDto> sideEffects;
     private String comment;
 
-
-public static class InsightsDtoBuilder {
-
+    public static class InsightsDtoBuilder {
+        private long id;
+        private long weatherId;
         private String username;
         private LocalDate creationDate;
         private Set<EmotionalStateDto> emotions = new HashSet<>();
@@ -31,6 +32,15 @@ public static class InsightsDtoBuilder {
 
         public static InsightsDtoBuilder builder(){
             return new InsightsDtoBuilder();
+        }
+
+        public InsightsDtoBuilder id(long id) {
+            this.id = id;
+            return this;
+        }
+        public InsightsDtoBuilder weather(long weatherId) {
+            this.weatherId = weatherId;
+            return this;
         }
 
         public InsightsDtoBuilder username(String username) {
@@ -58,8 +68,8 @@ public static class InsightsDtoBuilder {
             return this;
         }
 
-        public InsightsDto build(){
-            return new InsightsDto(username, creationDate, emotions, sideEffects, comment);
+        public CreatedInsightsDto build(){
+            return new CreatedInsightsDto(id,weatherId, username, creationDate, emotions, sideEffects, comment);
         }
     }
 }

@@ -45,7 +45,7 @@ public class WeatherConditions {
     @Column
     private int humidity;
 
-    @OneToOne(mappedBy = "conditions")
+    @OneToOne(mappedBy = "weather")
     private Insights insights;
 
 }

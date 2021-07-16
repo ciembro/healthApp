@@ -2,6 +2,8 @@ package com.ciembro.healthApp.domain;
 
 import com.ciembro.healthApp.domain.user.User;
 import com.ciembro.healthApp.domain.weather.WeatherConditions;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +14,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "insights")
 public class Insights {
@@ -21,14 +24,14 @@ public class Insights {
     private long id;
 
     @OneToOne
-    @JoinColumn(name = "condition_id")
-    private WeatherConditions conditions;
+    @JoinColumn(name = "weather_id", nullable = false)
+    private WeatherConditions weather;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate creationDate;
 
     @ManyToMany
@@ -57,4 +60,57 @@ public class Insights {
 
     @Column
     private String comment;
+
+    public static InsightsBuilder builder(){
+        return new InsightsBuilder();
+    }
+
+    public static class InsightsBuilder {
+        private long id;
+        private WeatherConditions weather;
+        private User user;
+        private LocalDate creationDate;
+        private List<EmotionalState> emotions = new ArrayList<>();
+        private List<SideEffect> sideEffects = new ArrayList<>();
+        private String comment;
+
+
+        public InsightsBuilder id(long id) {
+            this.id = id;
+            return this;
+        }
+        public InsightsBuilder weather(WeatherConditions weather) {
+            this.weather = weather;
+            return this;
+        }
+
+        public InsightsBuilder user(User user) {
+            this.user = user;
+            return this;
+        }
+
+        public InsightsBuilder creationDate(LocalDate creationDate) {
+            this.creationDate = creationDate;
+            return this;
+        }
+
+        public InsightsBuilder emotions(List<EmotionalState> emotions) {
+            this.emotions.addAll(emotions);
+            return this;
+        }
+
+        public InsightsBuilder sideEffects(List<SideEffect> sideEffects) {
+            this.sideEffects.addAll(sideEffects);
+            return this;
+        }
+
+        public InsightsBuilder comment(String comment) {
+            this.comment = comment;
+            return this;
+        }
+
+        public Insights build(){
+            return new Insights(id, weather,user,creationDate,emotions,sideEffects,comment);
+        }
+    }
 }

@@ -7,8 +7,9 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
-public class UserTreatmentDto {
+public class CreatedUserTreatmentDto {
 
+    private long id;
     private String username;
     private long drugId;
     private LocalDate startedAt;

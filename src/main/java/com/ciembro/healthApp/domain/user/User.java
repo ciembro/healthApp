@@ -2,7 +2,6 @@ package com.ciembro.healthApp.domain.user;
 
 import com.ciembro.healthApp.domain.Insights;
 import com.ciembro.healthApp.domain.UserTreatment;
-import com.ciembro.healthApp.domain.drug.Drug;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -41,6 +40,11 @@ public class User {
     @CreationTimestamp
     private LocalDateTime joiningDate;
 
+    @OneToMany(targetEntity = UserTreatment.class, mappedBy = "user")
+    List<UserTreatment> treatments = new ArrayList<>();
+
+    @OneToMany(targetEntity = Insights.class, mappedBy = "user")
+    List<Insights> insights = new ArrayList<>();
 
     public User(String username, String email, String password) {
         this.username = username;
@@ -51,10 +55,6 @@ public class User {
         this.joiningDate = LocalDateTime.now();
     }
 
-    @OneToMany( targetEntity = UserTreatment.class, mappedBy = "user")
-    List<UserTreatment> treatments = new ArrayList<>();
 
-    @OneToMany(targetEntity = Insights.class, mappedBy = "user")
-    List<Insights> insights = new ArrayList<>();
 
 }

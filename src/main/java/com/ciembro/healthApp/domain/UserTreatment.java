@@ -4,9 +4,18 @@ import com.ciembro.healthApp.domain.drug.Drug;
 import com.ciembro.healthApp.domain.user.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDate;
+
+@NamedNativeQueries(
+        {
+                @NamedNativeQuery(
+                        name = "UserTreatment.getAllForUser",
+                        query = "select * from treatments where user_id = :userId",
+                        resultClass = UserTreatment.class
+                )
+        }
+)
 
 @Data
 @NoArgsConstructor
