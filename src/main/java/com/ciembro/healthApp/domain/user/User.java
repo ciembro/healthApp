@@ -28,6 +28,9 @@ public class User {
     private String username;
 
     @Column(nullable = false)
+    private String location;
+
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
@@ -46,8 +49,9 @@ public class User {
     @OneToMany(targetEntity = Insights.class, mappedBy = "user")
     List<Insights> insights = new ArrayList<>();
 
-    public User(String username, String email, String password) {
+    public User(String username, String location, String email, String password) {
         this.username = username;
+        this.location = location;
         this.email = email;
         this.password = password;
         this.roles = "ROLE_USER";

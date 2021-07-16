@@ -121,7 +121,7 @@ public class DrugServiceTest {
     }
 
     private User createUser(){
-        return new User("user", "user@email.com", "pass");
+        return new User("user", "Krakow","user@email.com", "pass");
     }
 
 }

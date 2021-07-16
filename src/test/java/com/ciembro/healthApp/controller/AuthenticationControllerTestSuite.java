@@ -56,7 +56,7 @@ public class AuthenticationControllerTestSuite {
     public void testAuthenticationWhenLoginCredentialsCorrect() throws Exception {
         //given
         String password = passwordEncoder.encode("pass");
-        User user = new User("user", "user@email.com", password);
+        User user = new User("user", "Krakow","user@email.com", password);
         user = userRepository.save(user);
 
         UserDetails userDetails = new MyUserDetails(user);

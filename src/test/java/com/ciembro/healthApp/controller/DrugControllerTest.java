@@ -51,7 +51,7 @@ class DrugControllerTest {
     @BeforeAll
     void auth() throws Exception {
         String password = passwordEncoder.encode("pass");
-        user = new User("user", "user@email.com", password);
+        user = new User("user", "Krakow","user@email.com", password);
         user = userRepository.save(user);
 
         Gson gson = new Gson();

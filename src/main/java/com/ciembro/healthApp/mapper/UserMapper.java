@@ -9,6 +9,7 @@ public class UserMapper {
 
     public User mapToUser(UserToRegisterDto userToRegisterDto){
         return new User(userToRegisterDto.getUsername(),
+                userToRegisterDto.getLocation(),
                 userToRegisterDto.getEmail(),
                 userToRegisterDto.getPassword());
     }

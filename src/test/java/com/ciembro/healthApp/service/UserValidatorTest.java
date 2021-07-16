@@ -24,7 +24,9 @@ class UserValidatorTest {
     @Test
     void testValidateUserWhenCorrectData(){
         //given
-        UserToRegisterDto user = new UserToRegisterDto("new user", "user@mail.com", "pass");
+        UserToRegisterDto user = new UserToRegisterDto("new user",
+                "Krakow",
+                "user@mail.com", "pass");
         //when
         boolean isCorrect = userValidator.validateUserDetails(user);
         //then
@@ -34,7 +36,9 @@ class UserValidatorTest {
     @Test
     void testValidateUserWhenEmptyUsername(){
         //given
-        UserToRegisterDto user = new UserToRegisterDto("", "user@mail.com", "pass");
+        UserToRegisterDto user = new UserToRegisterDto("",
+                "Krakow",
+                "user@mail.com", "pass");
         //when
         boolean isCorrect = userValidator.validateUserDetails(user);
         //then
@@ -44,7 +48,7 @@ class UserValidatorTest {
     @Test
     void testValidateUserWhenEmptyEmail(){
         //given
-        UserToRegisterDto user = new UserToRegisterDto("user", "", "pass");
+        UserToRegisterDto user = new UserToRegisterDto("user", "Krakow","", "pass");
         //when
         boolean isCorrect = userValidator.validateUserDetails(user);
         //then
@@ -54,7 +58,7 @@ class UserValidatorTest {
     @Test
     void testValidateUserWhenEmptyPassword(){
         //given
-        UserToRegisterDto user = new UserToRegisterDto("user", "user@mail.com", "");
+        UserToRegisterDto user = new UserToRegisterDto("user", "Krakow","user@mail.com", "");
         //when
         boolean isCorrect = userValidator.validateUserDetails(user);
         //then
@@ -64,8 +68,8 @@ class UserValidatorTest {
     @Test
     void testValidateUserWhenUsernameTaken(){
         //given
-        UserToRegisterDto userToRegister = new UserToRegisterDto("reg user", "user@mail.com", "pass");
-        User user = new User("reg user", "user@mail.com", "password");
+        UserToRegisterDto userToRegister = new UserToRegisterDto("reg user", "Krakow","user@mail.com", "pass");
+        User user = new User("reg user","Krakow" ,"user@mail.com", "password");
         user = userRepository.save(user);
         //when
         boolean isCorrect = userValidator.validateUserDetails(userToRegister);

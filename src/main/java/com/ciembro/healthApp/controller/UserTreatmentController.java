@@ -20,21 +20,21 @@ public class UserTreatmentController {
     private final UserTreatmentFacade facade;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public CreatedUserTreatmentDto createUserTreatment(UserTreatmentDto treatmentDto)
+    public CreatedUserTreatmentDto createUserTreatment(@RequestBody UserTreatmentDto treatmentDto)
                         throws UserNotFoundException, DrugNotFoundException {
 
         return facade.createUserTreatment(treatmentDto);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public CreatedUserTreatmentDto updateUserTreatment(CreatedUserTreatmentDto treatmentDto)
+    public CreatedUserTreatmentDto updateUserTreatment(@RequestBody CreatedUserTreatmentDto treatmentDto)
                         throws UserNotFoundException, DrugNotFoundException {
 
         return facade.updateUserTreatment(treatmentDto);
     }
 
     @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteUserTreatment(CreatedUserTreatmentDto treatmentDto)
+    public void deleteUserTreatment(@RequestBody CreatedUserTreatmentDto treatmentDto)
                         throws UserNotFoundException, DrugNotFoundException {
 
         facade.deleteUserTreatment(treatmentDto);

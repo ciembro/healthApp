@@ -61,7 +61,6 @@ public class InsightsMapper {
 
         return Insights.builder()
                 .user(userService.findByUsername(dto.getUsername()))
-                .creationDate(dto.getCreationDate())
                 .emotions(emotions)
                 .sideEffects(effects)
                 .comment(dto.getComment())
@@ -81,11 +80,18 @@ public class InsightsMapper {
         return CreatedInsightsDto.InsightsDtoBuilder.builder()
                 .id(insights.getId())
                 .username(insights.getUser().getUsername())
+                .weather(insights.getWeather().getId())
                 .creationDate(insights.getCreationDate())
                 .emotions(emotions)
                 .sideEffects(effects)
                 .comment(insights.getComment())
                 .build();
+    }
+
+    public List<CreatedInsightsDto> mapToCreatedInsightDtoList(List<Insights> insights){
+        return  insights.stream()
+                .map(this::mapToCreatedInsightDto)
+                .collect(Collectors.toList());
     }
 
 }

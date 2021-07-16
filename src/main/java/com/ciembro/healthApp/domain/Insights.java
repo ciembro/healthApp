@@ -6,11 +6,23 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+
+@NamedNativeQueries(
+        {
+                @NamedNativeQuery(
+                        name = "Insights.getAllInsightsByUserId",
+                        query = "select * from insights where user_id = :userId",
+                        resultClass = Insights.class
+                )
+        }
+)
 
 @Data
 @NoArgsConstructor
@@ -32,6 +44,7 @@ public class Insights {
     private User user;
 
     @Column(nullable = false)
+    @CreationTimestamp
     private LocalDate creationDate;
 
     @ManyToMany

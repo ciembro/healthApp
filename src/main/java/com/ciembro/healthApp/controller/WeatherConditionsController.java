@@ -3,6 +3,7 @@ package com.ciembro.healthApp.controller;
 import com.ciembro.healthApp.facade.WeatherConditionsFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,8 +16,8 @@ public class WeatherConditionsController {
 
     private final WeatherConditionsFacade facade;
 
-    @GetMapping("/loc")
-    public List<String> searchForMatchingLocations(String location){
+    @GetMapping("/loc/{location}")
+    public List<String> searchForMatchingLocations(@PathVariable String location){
         return facade.searchForMatchingLocations(location);
     }
 

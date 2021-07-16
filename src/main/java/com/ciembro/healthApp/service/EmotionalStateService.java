@@ -17,10 +17,15 @@ public class EmotionalStateService {
     @Autowired
     private EmotionalStateRepository repository;
 
+    public EmotionalState save(EmotionalState emotionalState){
+        return repository.save(emotionalState);
+    }
+
     public void loadEmotionalStates(){
 
         Path path = Paths.get("src/main/resources/emotions");
         EmotionalState emotionalState;
+        EmotionalState emotionalStateFromDb;
         try (BufferedReader reader = Files.newBufferedReader(path)) {
 
             String str;
@@ -29,6 +34,7 @@ public class EmotionalStateService {
                 String[] line = str.split(";");
                 emotionalState.setEngText(line[0]);
                 emotionalState.setPlText(line[1]);
+
                 repository.save(emotionalState);
             }
 

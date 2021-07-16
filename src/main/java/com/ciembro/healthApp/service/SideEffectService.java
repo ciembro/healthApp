@@ -24,6 +24,10 @@ public class SideEffectService {
         return repository.save(sideEffect);
     }
 
+    public SideEffect findById(long id){
+        return repository.findById(id);
+    }
+
     public void deleteById(long sideEffectId){
         repository.deleteById(sideEffectId);
     }

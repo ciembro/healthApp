@@ -1,5 +1,6 @@
 package com.ciembro.healthApp.facade;
 
+import com.ciembro.healthApp.domain.weather.WeatherConditions;
 import com.ciembro.healthApp.service.WeatherApiService;
 import com.ciembro.healthApp.service.WeatherConditionsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,13 @@ public class WeatherConditionsFacade {
 
     public List<String> searchForMatchingLocations(String location){
         return weatherApiService.searchForLocations(location);
+    }
+
+    public WeatherConditions getWeatherForLocation(String location){
+        return weatherApiService.getWeatherForLocation(location);
+    }
+
+    public WeatherConditions save(WeatherConditions weatherConditions){
+        return weatherConditionsService.save(weatherConditions);
     }
 }

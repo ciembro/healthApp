@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 public class EmotionalStateDto {
 
     private long id;
+    private String engText;
     private String plText;
 }

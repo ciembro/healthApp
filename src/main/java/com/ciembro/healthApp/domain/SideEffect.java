@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -21,5 +22,5 @@ public class SideEffect {
     private String text;
 
     @ManyToMany(mappedBy = "sideEffects")
-    private List<Insights> insights;
+    private List<Insights> insights = new ArrayList<>();
 }

@@ -6,4 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface SideEffectRepository extends CrudRepository<SideEffect, Long> {
 
 
+    SideEffect findById(long id);
 }

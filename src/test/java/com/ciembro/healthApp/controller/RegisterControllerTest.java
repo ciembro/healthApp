@@ -36,15 +36,16 @@ class RegisterControllerTest {
     @Test
     void testRegisterWhenValidData() throws Exception {
         //given
-        User user =  new User("user", "user@email.com", "pass");
+        User user =  new User("user", "Krakow","user@email.com", "pass");
         user = userRepository.save(user);
 
         UserToRegisterDto userToRegister = new UserToRegisterDto("next user",
+                "Krakow",
                 "user@email.com",
                 "pass");
 
         when(userMapper.mapToUser(userToRegister)).thenReturn
-                (new User("next user", "user@email.com", "pass"));
+                (new User("next user","Krakow","user@email.com", "pass"));
         Gson gson = new Gson();
         String registrationDto = gson.toJson(userToRegister);
 
@@ -64,15 +65,16 @@ class RegisterControllerTest {
     @Test
     void testRegisterWhenUserAlreadyExists() throws Exception {
         //given
-        User user =  new User("user", "user@email.com", "pass");
+        User user =  new User("user", "Krakow","user@email.com", "pass");
         user = userRepository.save(user);
 
         UserToRegisterDto userToRegister = new UserToRegisterDto("user",
+                "Krakow",
                 "user@email.com",
                 "pass");
 
         when(userMapper.mapToUser(userToRegister)).thenReturn
-                (new User("user", "user@email.com", "pass"));
+                (new User("user","Krakow" ,"user@email.com", "pass"));
         Gson gson = new Gson();
         String registrationDto = gson.toJson(userToRegister);
 
