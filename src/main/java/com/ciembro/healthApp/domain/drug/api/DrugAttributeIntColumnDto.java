@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DrugJsonAttributeIntColumn {
+public class DrugAttributeIntColumnDto {
 
     @JsonProperty("val")
     private int value;

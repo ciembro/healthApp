@@ -1,13 +1,11 @@
 package com.ciembro.healthApp.domain.weather;
 
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ciembro.healthApp.domain.Insights;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -46,5 +44,8 @@ public class WeatherConditions {
 
     @Column
     private int humidity;
+
+    @OneToOne(mappedBy = "conditions")
+    private Insights insights;
 
 }

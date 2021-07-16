@@ -74,58 +74,6 @@ class DrugControllerTest {
         userRepository.deleteById(user.getId());
     }
 
-    @Test
-    void shouldAddDrugToUserList() throws Exception {
-        //given
-        DrugDto drugDto = createDrugDto();
-        Drug drug = createDrug();
 
-        when(drugMapper.mapToDrug(drugDto)).thenReturn(drug);
-        Gson gson = new Gson();
-        String jsonContent = gson.toJson(drugDto);
-
-        //when&then
-        mockMvc.perform(MockMvcRequestBuilders
-                .post("/v1/drugs")
-                .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
-                .contentType(MediaType.APPLICATION_JSON)
-                .characterEncoding("UTF-8")
-                .content(jsonContent))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    void shouldRemoveDrugFromUserList() throws DrugNotFoundException {
-        //given
-        DrugDto drugDto = createDrugDto();
-        Drug drug = createDrug();
-
-        when(drugMapper.mapToDrug(drugDto)).thenReturn(drug);
-    }
-
-
-
-    private Drug createDrug(){
-        Drug drug = new Drug();
-        drug.setId(1L);
-        drug.setInternationalName("common name");
-        drug.setTradeName("tradeName");
-        drug.setDosage("dose");
-        drug.setBrand("brand");
-        drug.setActiveSubstance("active substance");
-        drug.setLeafletUrl("http://test.com");
-        return drug;
-    }
-
-    private DrugDto createDrugDto(){
-        return new DrugDto (1L,
-                1,
-                "common name",
-                "trade name",
-                "dose",
-                "brand",
-                "active substance",
-                "http://test.com");
-    }
 
 }

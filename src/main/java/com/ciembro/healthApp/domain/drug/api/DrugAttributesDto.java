@@ -8,29 +8,29 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DrugJsonAttributes {
+public class DrugAttributesDto {
 
     @JsonProperty("col1")
-    private DrugJsonAttributeIntColumn uniqueDrugId;
+    private DrugAttributeIntColumnDto uniqueDrugId;
 
     @JsonProperty("col2")
-    private DrugJsonAttributeStringColumn tradeName;
+    private DrugAttributeStringColumnDto tradeName;
 
     @JsonProperty("col3")
-    private DrugJsonAttributeStringColumn internationalName;
+    private DrugAttributeStringColumnDto internationalName;
 
     @JsonProperty("col4")
-    private DrugJsonAttributeStringColumn productType;
+    private DrugAttributeStringColumnDto productType;
 
     @JsonProperty("col7")
-    private DrugJsonAttributeStringColumn dosage;
+    private DrugAttributeStringColumnDto dosage;
 
     @JsonProperty("col13")
-    private DrugJsonAttributeStringColumn brand;
+    private DrugAttributeStringColumnDto brand;
 
     @JsonProperty("col15")
-    private DrugJsonAttributeStringColumn activeSubstance;
+    private DrugAttributeStringColumnDto activeSubstance;
 
     @JsonProperty("col16")
-    private DrugJsonAttributeStringColumn leafletUrl;
+    private DrugAttributeStringColumnDto leafletUrl;
 }

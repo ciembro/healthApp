@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
-public class WeatherDto {
+public class WeatherConditionsDto {
 
     private long id;
     private LocalDate currentDate;

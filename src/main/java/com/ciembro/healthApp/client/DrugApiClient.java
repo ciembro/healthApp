@@ -1,7 +1,7 @@
 package com.ciembro.healthApp.client;
 
 import com.ciembro.healthApp.config.DrugApiConfig;
-import com.ciembro.healthApp.domain.drug.api.DrugApiResponse;
+import com.ciembro.healthApp.domain.drug.api.DrugApiDto;
 import com.ciembro.healthApp.domain.drug.api.DrugJsonDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -22,7 +22,7 @@ public class DrugApiClient {
     public List<DrugJsonDto> loadDrugListFromApi(){
         try {
             List<DrugJsonDto> drugs = new ArrayList<>();
-            DrugApiResponse response = restTemplate.getForObject(drugApiConfig.getDrugApiEndpoint(), DrugApiResponse.class);
+            DrugApiDto response = restTemplate.getForObject(drugApiConfig.getDrugApiEndpoint(), DrugApiDto.class);
 
             if (response != null){
                 String last = response.getPaginationLinks().getLast();
@@ -32,7 +32,7 @@ public class DrugApiClient {
                             .filter(d -> d.getDrugJsonAttributes().getProductType().getValue().equals("Ludzki"))
                             .collect(Collectors.toList()));
                     String next = response.getPaginationLinks().getNext();
-                    response = restTemplate.getForObject(next, DrugApiResponse.class);
+                    response = restTemplate.getForObject(next, DrugApiDto.class);
 
                 }
             }

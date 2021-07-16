@@ -14,7 +14,7 @@ public class DrugJsonDto {
     private String id;
 
     @JsonProperty("attributes")
-    private DrugJsonAttributes drugJsonAttributes;
+    private DrugAttributesDto drugJsonAttributes;
 
 
 }

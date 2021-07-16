@@ -38,7 +38,6 @@ public class AuthenticationController {
                     )
             );
         } catch (BadCredentialsException e) {
-//            throw new Exception("Incorrect username or password", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         final UserDetails userDetails = userDetailsService

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class DrugApiResponse {
+public class DrugApiDto {
 
     @JsonProperty("links")
     PaginationLinks paginationLinks;

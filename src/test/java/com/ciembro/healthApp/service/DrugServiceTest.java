@@ -3,10 +3,7 @@ package com.ciembro.healthApp.service;
 
 import com.ciembro.healthApp.domain.drug.Drug;
 import com.ciembro.healthApp.domain.user.User;
-import com.ciembro.healthApp.domain.sideeffect.SideEffect;
-import com.ciembro.healthApp.exception.UserNotFoundException;
 import com.ciembro.healthApp.repository.DrugRepository;
-import com.ciembro.healthApp.repository.SideEffectRepository;
 import com.ciembro.healthApp.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

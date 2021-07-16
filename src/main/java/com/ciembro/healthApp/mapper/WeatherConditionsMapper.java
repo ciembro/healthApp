@@ -1,15 +1,15 @@
 package com.ciembro.healthApp.mapper;
 
 import com.ciembro.healthApp.domain.weather.WeatherConditions;
-import com.ciembro.healthApp.domain.weather.api.WeatherApiDto;
+import com.ciembro.healthApp.domain.weather.api.WeatherConditionsApiDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class WeatherMapper {
+public class WeatherConditionsMapper {
 
-    public WeatherConditions mapToWeather(WeatherApiDto weatherDto){
+    public WeatherConditions mapToWeather(WeatherConditionsApiDto weatherDto){
         WeatherConditions weather = new WeatherConditions();
         weather.setLocation(weatherDto.getLocation().getCity());
         weather.setWeatherText(weatherDto.getCurrent().getCondition().getText());
