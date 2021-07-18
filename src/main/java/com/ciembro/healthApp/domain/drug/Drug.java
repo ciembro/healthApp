@@ -1,8 +1,7 @@
 package com.ciembro.healthApp.domain.drug;
 
 import com.ciembro.healthApp.domain.UserTreatment;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,7 +26,9 @@ import java.util.List;
         )
 })
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
 @NoArgsConstructor
 @Entity
 @Table(name = "drugs")

@@ -23,7 +23,7 @@ public class AdminController {
 
     @PostMapping("/emotions")
     public void loadEmotionalStatesToDb(){
-        emotionService.loadEmotionalStates();
+        emotionService.insertEmotionalStatesToDb();
     }
 
     @PostMapping("/effects")

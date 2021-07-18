@@ -2,10 +2,7 @@ package com.ciembro.healthApp.domain;
 
 import com.ciembro.healthApp.domain.user.User;
 import com.ciembro.healthApp.domain.weather.WeatherConditions;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;

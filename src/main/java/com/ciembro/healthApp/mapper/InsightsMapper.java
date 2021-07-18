@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class InsightsMapper {
 
     @Autowired
-    private WeatherConditionsService weatherService;
+    private WeatherConditionsMapper weatherMapper;
 
     @Autowired
     private UserService userService;
@@ -40,7 +40,7 @@ public class InsightsMapper {
 
         return Insights.builder()
                 .id(dto.getId())
-                .weather(weatherService.findById(dto.getWeatherId()))
+                .weather(weatherMapper.mapToWeatherConditions(dto.getWeather()))
                 .user(userService.findByUsername(dto.getUsername()))
                 .creationDate(dto.getCreationDate())
                 .emotions(emotions)
@@ -80,7 +80,7 @@ public class InsightsMapper {
         return CreatedInsightsDto.InsightsDtoBuilder.builder()
                 .id(insights.getId())
                 .username(insights.getUser().getUsername())
-                .weather(insights.getWeather().getId())
+                .weather(weatherMapper.mapToWeatherConditionsDto(insights.getWeather()))
                 .creationDate(insights.getCreationDate())
                 .emotions(emotions)
                 .sideEffects(effects)

@@ -5,9 +5,11 @@ import com.ciembro.healthApp.domain.EmotionalStateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class EmotionalStateMapper {
-
 
     public EmotionalStateDto mapToEmotionalStateDto(EmotionalState emotion){
         EmotionalStateDto dto = new EmotionalStateDto();
@@ -23,5 +25,11 @@ public class EmotionalStateMapper {
         emotionalState.setEngText(dto.getEngText());
         emotionalState.setPlText(dto.getPlText());
         return emotionalState;
+    }
+
+    public List<EmotionalStateDto> mapToEmotionalStatesDtoList(List<EmotionalState> emotions){
+        return emotions.stream()
+                .map(this::mapToEmotionalStateDto)
+                .collect(Collectors.toList());
     }
 }

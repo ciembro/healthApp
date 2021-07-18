@@ -40,7 +40,7 @@ public class UserTreatmentController {
         facade.deleteUserTreatment(treatmentDto);
     }
 
-    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping
     public List<CreatedUserTreatmentDto> getAllUserTreatments(Authentication authentication)
                         throws UserNotFoundException {
 

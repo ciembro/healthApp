@@ -37,4 +37,18 @@ public class WeatherConditionsMapper {
         dto.setWindKph(weather.getWindKph());
         return dto;
     }
+
+    public WeatherConditions mapToWeatherConditions(WeatherConditionsDto weatherDto){
+        WeatherConditions weather = new WeatherConditions();
+        weather.setId(weatherDto.getId());
+        weather.setLocation(weatherDto.getLocation());
+        weather.setWeatherText(weatherDto.getWeatherText());
+        weather.setIconUrl(weatherDto.getIconUrl());
+        weather.setTemp(weatherDto.getTemp());
+        weather.setTempFeelsLike(weatherDto.getTempFeelsLike());
+        weather.setHumidity(weatherDto.getHumidity());
+        weather.setPressure(weatherDto.getPressure());
+        weather.setWindKph(weatherDto.getWindKph());
+        return weather;
+    }
 }

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 @Service
 public class EmotionalStateService {
@@ -21,11 +22,9 @@ public class EmotionalStateService {
         return repository.save(emotionalState);
     }
 
-    public void loadEmotionalStates(){
-
+    public void insertEmotionalStatesToDb(){
         Path path = Paths.get("src/main/resources/emotions");
         EmotionalState emotionalState;
-        EmotionalState emotionalStateFromDb;
         try (BufferedReader reader = Files.newBufferedReader(path)) {
 
             String str;
@@ -37,10 +36,13 @@ public class EmotionalStateService {
 
                 repository.save(emotionalState);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<EmotionalState> findAll(){
+        return (List<EmotionalState>)repository.findAll();
     }
 
 }

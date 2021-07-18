@@ -8,6 +8,7 @@ import com.ciembro.healthApp.repository.InsightsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -48,7 +49,7 @@ public class InsightsService {
     }
 
     public List<Insights> getAllInsightsByUserId(long userId){
-        return insightsRepository.getAllInsightsByUserId(userId);
+        return  insightsRepository.getAllInsightsByUserId(userId);
     }
 
 

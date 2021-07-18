@@ -1,5 +1,7 @@
 package com.ciembro.healthApp.domain;
 
+import com.ciembro.healthApp.domain.weather.WeatherConditions;
+import com.ciembro.healthApp.domain.weather.WeatherConditionsDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +16,7 @@ import java.util.Set;
 public class CreatedInsightsDto {
 
     private long id;
-    private long weatherId;
+    private WeatherConditionsDto weather;
     private String username;
     private LocalDate creationDate;
     private Set<EmotionalStateDto> emotions;
@@ -23,7 +25,7 @@ public class CreatedInsightsDto {
 
     public static class InsightsDtoBuilder {
         private long id;
-        private long weatherId;
+        private WeatherConditionsDto weather;
         private String username;
         private LocalDate creationDate;
         private Set<EmotionalStateDto> emotions = new HashSet<>();
@@ -38,8 +40,8 @@ public class CreatedInsightsDto {
             this.id = id;
             return this;
         }
-        public InsightsDtoBuilder weather(long weatherId) {
-            this.weatherId = weatherId;
+        public InsightsDtoBuilder weather(WeatherConditionsDto weatherConditions) {
+            this.weather = weatherConditions;
             return this;
         }
 
@@ -69,7 +71,7 @@ public class CreatedInsightsDto {
         }
 
         public CreatedInsightsDto build(){
-            return new CreatedInsightsDto(id,weatherId, username, creationDate, emotions, sideEffects, comment);
+            return new CreatedInsightsDto(id, weather, username, creationDate, emotions, sideEffects, comment);
         }
     }
 }

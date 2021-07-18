@@ -24,12 +24,14 @@ public class UserTreatmentMapper {
     @Autowired
     private DrugRepository drugRepository;
 
+    @Autowired
+    private DrugMapper drugMapper;
+
     public UserTreatment mapToUserTreatment(UserTreatmentDto dto) throws UserNotFoundException, DrugNotFoundException {
         User user = userRepository.findByUsername(dto.getUsername()).orElseThrow(UserNotFoundException::new);
-        Drug drug = drugRepository.findById(dto.getDrugId()).orElseThrow(DrugNotFoundException::new);
         UserTreatment userTreatment = new UserTreatment();
         userTreatment.setUser(user);
-        userTreatment.setDrug(drug);
+        userTreatment.setDrug(drugMapper.mapToDrug(dto.getDrugDto()));
         userTreatment.setStartedAt(dto.getStartedAt());
         userTreatment.setFinishedAt(dto.getFinishedAt());
         return userTreatment;
@@ -37,11 +39,10 @@ public class UserTreatmentMapper {
 
     public UserTreatment mapToUserTreatment(CreatedUserTreatmentDto dto) throws UserNotFoundException, DrugNotFoundException {
         User user = userRepository.findByUsername(dto.getUsername()).orElseThrow(UserNotFoundException::new);
-        Drug drug = drugRepository.findById(dto.getDrugId()).orElseThrow(DrugNotFoundException::new);
         UserTreatment userTreatment = new UserTreatment();
         userTreatment.setId(dto.getId());
         userTreatment.setUser(user);
-        userTreatment.setDrug(drug);
+        userTreatment.setDrug(drugMapper.mapToDrug(dto.getDrugDto()));
         userTreatment.setStartedAt(dto.getStartedAt());
         userTreatment.setFinishedAt(dto.getFinishedAt());
         return userTreatment;
@@ -51,7 +52,7 @@ public class UserTreatmentMapper {
         CreatedUserTreatmentDto dto = new CreatedUserTreatmentDto();
         dto.setId(treatment.getId());
         dto.setUsername(treatment.getUser().getUsername());
-        dto.setDrugId(treatment.getDrug().getId());
+        dto.setDrugDto(drugMapper.mapFromDbToDrugDto(treatment.getDrug()));
         dto.setStartedAt(treatment.getStartedAt());
         dto.setFinishedAt(treatment.getFinishedAt());
         return dto;

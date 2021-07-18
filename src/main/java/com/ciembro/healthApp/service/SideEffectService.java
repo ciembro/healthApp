@@ -1,6 +1,5 @@
 package com.ciembro.healthApp.service;
 
-import com.ciembro.healthApp.domain.EmotionalState;
 import com.ciembro.healthApp.domain.SideEffect;
 import com.ciembro.healthApp.repository.SideEffectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
+import java.util.List;
 
 
 @Service
@@ -24,15 +23,9 @@ public class SideEffectService {
         return repository.save(sideEffect);
     }
 
-    public SideEffect findById(long id){
-        return repository.findById(id);
+    public List<SideEffect> findAll(){
+        return (List<SideEffect>)repository.findAll();
     }
-
-    public void deleteById(long sideEffectId){
-        repository.deleteById(sideEffectId);
-    }
-
-
     public void loadSideEffects(){
 
             Path path = Paths.get("src/main/resources/side_effects.txt");

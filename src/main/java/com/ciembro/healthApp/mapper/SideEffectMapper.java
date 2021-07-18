@@ -6,9 +6,11 @@ import com.ciembro.healthApp.repository.SideEffectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class SideEffectMapper {
-
 
     public SideEffectDto mapToSideEffectDto(SideEffect sideEffect){
         SideEffectDto dto = new SideEffectDto();
@@ -23,4 +25,9 @@ public class SideEffectMapper {
         sideEffect.setText(dto.getText());
         return sideEffect;    }
 
+    public List<SideEffectDto> mapToSideEffectDtoList(List<SideEffect> sideEffects){
+        return sideEffects.stream()
+                .map(this::mapToSideEffectDto)
+                .collect(Collectors.toList());
+    }
 }

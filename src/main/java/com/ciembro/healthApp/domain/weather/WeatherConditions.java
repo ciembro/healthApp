@@ -1,8 +1,6 @@
 package com.ciembro.healthApp.domain.weather;
 
-import com.ciembro.healthApp.domain.Insights;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -44,8 +42,5 @@ public class WeatherConditions {
 
     @Column
     private int humidity;
-
-    @OneToOne(mappedBy = "weather")
-    private Insights insights;
 
 }

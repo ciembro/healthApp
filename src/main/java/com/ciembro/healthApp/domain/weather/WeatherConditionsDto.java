@@ -1,16 +1,16 @@
 package com.ciembro.healthApp.domain.weather;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 public class WeatherConditionsDto {
 
     private long id;
-    private LocalDate currentDate;
+    private LocalDateTime checkDate;
     private String location;
     private double temp;
     private double tempFeelsLike;
