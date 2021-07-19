@@ -26,9 +26,10 @@ public class UserService {
         return userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
     }
 
-    public User findById(long id) throws UserNotFoundException {
-        return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+    public void changeUserLocation(String location, String username) throws UserNotFoundException {
+        User user = findByUsername(username);
+        user.setLocation(location);
+        save(user);
     }
-
 
 }

@@ -36,7 +36,9 @@ public class SideEffectService {
                 while ((str = reader.readLine()) != null) {
                     sideEffect = new SideEffect();
                     sideEffect.setText(str.replace(";", ""));
-                    repository.save(sideEffect);
+                    if (repository.findByText(sideEffect.getText()).isEmpty()){
+                        repository.save(sideEffect);
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();

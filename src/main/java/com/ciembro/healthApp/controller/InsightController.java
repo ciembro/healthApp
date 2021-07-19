@@ -8,6 +8,7 @@ import com.ciembro.healthApp.facade.InsightsFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -40,8 +41,8 @@ public class InsightController {
     @GetMapping("/all")
     public List<CreatedInsightsDto> getAllUserInsights(Authentication authentication)
             throws UserNotFoundException {
-
-        return facade.getAllUserInsights(authentication);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        return facade.getAllUserInsights(userDetails.getUsername());
     }
 
 }

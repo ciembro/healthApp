@@ -11,6 +11,4 @@ public class UserToRegisterDto {
     private String location;
     private String email;
     private String password;
-
-
 }

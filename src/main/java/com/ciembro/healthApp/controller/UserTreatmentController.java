@@ -8,6 +8,7 @@ import com.ciembro.healthApp.facade.UserTreatmentFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class UserTreatmentController {
     @GetMapping
     public List<CreatedUserTreatmentDto> getAllUserTreatments(Authentication authentication)
                         throws UserNotFoundException {
-
-        return facade.getAllUserTreatments(authentication);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        return facade.getAllUserTreatments(userDetails.getUsername());
     }
 }

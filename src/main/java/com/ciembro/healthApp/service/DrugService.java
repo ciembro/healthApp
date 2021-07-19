@@ -1,5 +1,6 @@
 package com.ciembro.healthApp.service;
 
+import com.ciembro.healthApp.domain.UserTreatment;
 import com.ciembro.healthApp.domain.drug.Drug;
 import com.ciembro.healthApp.domain.user.User;
 import com.ciembro.healthApp.exception.DrugNotFoundException;
@@ -10,8 +11,12 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Data
@@ -19,14 +24,10 @@ import java.util.List;
 public class DrugService {
     private final DrugRepository drugRepository;
     private final UserRepository userRepository;
-
+    private final UserTreatmentService userTreatmentService;
 
     public Drug save(Drug drug){
         return drugRepository.save(drug);
-    }
-
-    public Drug findById(Long id) throws DrugNotFoundException {
-        return drugRepository.findById(id).orElseThrow(DrugNotFoundException::new);
     }
 
     public List<Drug> findByActiveSubstanceFrag(String substanceNameFrag){
@@ -48,27 +49,26 @@ public class DrugService {
         return matchedDrugs;
     }
 
-    public String getLeafletUrl(Drug drug){
-        return drug.getLeafletUrl();
-    }
-
     public Drug findByUniqueDrugId(int uniqueId){
         return drugRepository.findByUniqueDrugId(uniqueId);
     }
 
-    public void addDrugToUserList(String username, Drug drug) throws UserNotFoundException {
-        User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
-        //TODO
+    public List<Drug> findAllByDate(LocalDate date, String username)
+            throws UserNotFoundException {
+        List<UserTreatment> treatments = userTreatmentService
+                .findAllBetweenDates(date, username);
+        return treatments.stream()
+                .map(UserTreatment::getDrug)
+                .collect(Collectors.toList());
     }
 
-    public void removeDrugFromUserList(String username, Drug drug) throws UserNotFoundException {
+    public Set<Drug> getAllByUser(String username) throws UserNotFoundException {
         User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
-        //TODO
+        List<UserTreatment> treatments = userTreatmentService.getAllUserTreatments(user.getId());
+        return treatments.stream()
+                .map(UserTreatment::getDrug)
+                .collect(Collectors.toSet());
     }
-
-
-
-
 
 
 }

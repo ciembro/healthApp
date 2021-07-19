@@ -84,7 +84,6 @@ public class Insights {
         private List<SideEffect> sideEffects = new ArrayList<>();
         private String comment;
 
-
         public InsightsBuilder id(long id) {
             this.id = id;
             return this;

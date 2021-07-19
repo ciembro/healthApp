@@ -47,14 +47,14 @@ public class InsightsFacade {
     }
 
     public void deleteInsights(@RequestBody CreatedInsightsDto insightsDto)
-            throws UserNotFoundException, WeatherConditionsNotFoundException {
+            throws UserNotFoundException {
         Insights insights = insightsMapper.mapToInsight(insightsDto);
         insightsService.delete(insights);
     }
 
-    public List<CreatedInsightsDto> getAllUserInsights(Authentication authentication) throws UserNotFoundException {
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        User user = userService.findByUsername(userDetails.getUsername());
-        return insightsMapper.mapToCreatedInsightDtoList(insightsService.getAllInsightsByUserId(user.getId()));
+    public List<CreatedInsightsDto> getAllUserInsights(String username) throws UserNotFoundException {
+        User user = userService.findByUsername(username);
+        return insightsMapper.mapToCreatedInsightDtoList(insightsService
+                .getAllInsightsByUserId(user.getId()));
     }
 }

@@ -3,7 +3,6 @@ package com.ciembro.healthApp.mapper;
 import com.ciembro.healthApp.domain.CreatedUserTreatmentDto;
 import com.ciembro.healthApp.domain.UserTreatment;
 import com.ciembro.healthApp.domain.UserTreatmentDto;
-import com.ciembro.healthApp.domain.drug.Drug;
 import com.ciembro.healthApp.domain.user.User;
 import com.ciembro.healthApp.exception.DrugNotFoundException;
 import com.ciembro.healthApp.exception.UserNotFoundException;
@@ -52,7 +51,7 @@ public class UserTreatmentMapper {
         CreatedUserTreatmentDto dto = new CreatedUserTreatmentDto();
         dto.setId(treatment.getId());
         dto.setUsername(treatment.getUser().getUsername());
-        dto.setDrugDto(drugMapper.mapFromDbToDrugDto(treatment.getDrug()));
+        dto.setDrugDto(drugMapper.mapToDrugDto(treatment.getDrug()));
         dto.setStartedAt(treatment.getStartedAt());
         dto.setFinishedAt(treatment.getFinishedAt());
         return dto;

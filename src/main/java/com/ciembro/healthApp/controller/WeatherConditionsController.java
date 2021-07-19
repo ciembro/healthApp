@@ -21,5 +21,4 @@ public class WeatherConditionsController {
         return facade.searchForMatchingLocations(location);
     }
 
-
 }

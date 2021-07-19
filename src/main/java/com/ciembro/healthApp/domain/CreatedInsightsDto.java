@@ -23,6 +23,10 @@ public class CreatedInsightsDto {
     private Set<SideEffectDto> sideEffects;
     private String comment;
 
+    public static InsightsDtoBuilder builder(){
+        return new InsightsDtoBuilder();
+    }
+
     public static class InsightsDtoBuilder {
         private long id;
         private WeatherConditionsDto weather;

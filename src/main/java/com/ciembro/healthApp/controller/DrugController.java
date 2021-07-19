@@ -1,13 +1,15 @@
 package com.ciembro.healthApp.controller;
 
-import com.ciembro.healthApp.domain.drug.Drug;
 import com.ciembro.healthApp.domain.drug.DrugDto;
-import com.ciembro.healthApp.exception.DrugNotFoundException;
-import com.ciembro.healthApp.mapper.DrugMapper;
-import com.ciembro.healthApp.service.DrugService;
+import com.ciembro.healthApp.exception.UserNotFoundException;
+import com.ciembro.healthApp.facade.DrugFacade;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -15,20 +17,23 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DrugController {
 
-    private final DrugMapper drugMapper;
-    private final DrugService drugService;
+    private final DrugFacade facade;
 
     @GetMapping("/search/{text}")
     public List<DrugDto> searchMatchingDrugs(@PathVariable String text){
-        return drugMapper.mapFromDbToDrugDtoList
-                (drugService.findAllMatching(text));
+        return facade.searchMatchingDrugs(text);
     }
 
-    @GetMapping("/{id}")
-    public DrugDto getDrugById(@PathVariable long id) throws DrugNotFoundException {
-        Drug drug = drugService.findById(id);
-        return drugMapper.mapFromDbToDrugDto(drug);
+    @GetMapping("/{date}")
+    public List<DrugDto> getDrugByDate(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+                               Authentication authentication) throws UserNotFoundException {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        return facade.getDrugByDate(date, userDetails.getUsername());
     }
 
-
+    @GetMapping("/user")
+    public List<DrugDto> getAllByUser(Authentication authentication) throws UserNotFoundException {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        return facade.getAllByUser(userDetails.getUsername());
+    }
 }

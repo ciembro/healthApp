@@ -10,6 +10,12 @@ import java.time.LocalDate;
 @NamedNativeQueries(
         {
                 @NamedNativeQuery(
+                        name = "UserTreatment.findAllBetweenDates",
+                        query = "select * from treatments where started_at < :date " +
+                                "and :date < finished_at and user_id = :userId",
+                        resultClass = UserTreatment.class
+                ),
+                @NamedNativeQuery(
                         name = "UserTreatment.getAllForUser",
                         query = "select * from treatments where user_id = :userId",
                         resultClass = UserTreatment.class

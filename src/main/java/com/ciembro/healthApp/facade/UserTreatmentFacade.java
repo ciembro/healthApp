@@ -53,11 +53,9 @@ public class UserTreatmentFacade {
         treatmentService.deleteById(treatment.getId());
     }
 
-    public List<CreatedUserTreatmentDto> getAllUserTreatments(Authentication authentication)
+    public List<CreatedUserTreatmentDto> getAllUserTreatments(String username)
                                 throws UserNotFoundException {
-
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        User user = userService.findByUsername(userDetails.getUsername());
+        User user = userService.findByUsername(username);
         return treatmentMapper.mapToCreatedUserTreatmentDtoList
                 (treatmentService.getAllUserTreatments(user.getId()));
     }

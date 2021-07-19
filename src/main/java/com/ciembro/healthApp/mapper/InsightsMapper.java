@@ -27,8 +27,7 @@ public class InsightsMapper {
     @Autowired
     private SideEffectMapper sideEffectMapper;
 
-    public Insights mapToInsight(CreatedInsightsDto dto)
-            throws WeatherConditionsNotFoundException, UserNotFoundException {
+    public Insights mapToInsight(CreatedInsightsDto dto) throws UserNotFoundException {
 
         List<EmotionalState> emotions = dto.getEmotions().stream()
                 .map(e -> emotionalStateMapper.mapToEmotionalState(e))

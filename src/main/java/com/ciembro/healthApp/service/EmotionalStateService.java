@@ -33,8 +33,10 @@ public class EmotionalStateService {
                 String[] line = str.split(";");
                 emotionalState.setEngText(line[0]);
                 emotionalState.setPlText(line[1]);
-
-                repository.save(emotionalState);
+                if (repository.findByPlTextAndEngText
+                        (emotionalState.getPlText(), emotionalState.getEngText()).isEmpty()){
+                        repository.save(emotionalState);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

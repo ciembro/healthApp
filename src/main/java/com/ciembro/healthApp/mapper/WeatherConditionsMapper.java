@@ -11,44 +11,45 @@ import org.springframework.stereotype.Service;
 public class WeatherConditionsMapper {
 
     public WeatherConditions mapToWeather(WeatherConditionsApiDto weatherDto){
-        WeatherConditions weather = new WeatherConditions();
-        weather.setLocation(weatherDto.getLocation().getCity());
-        weather.setWeatherText(weatherDto.getCurrent().getCondition().getText());
-        weather.setIconUrl(weatherDto.getCurrent().getCondition().getIconUrl());
-        weather.setTemp(weatherDto.getCurrent().getTemp());
-        weather.setTempFeelsLike(weatherDto.getCurrent().getTempFeelsLike());
-        weather.setHumidity(weatherDto.getCurrent().getHumidity());
-        weather.setPressure(weatherDto.getCurrent().getPressure());
-        weather.setWindKph(weatherDto.getCurrent().getWindKph());
-
-        return weather;
+        return WeatherConditions.builder()
+                .location(weatherDto.getLocation().getCity())
+                .weatherText(weatherDto.getCurrent().getCondition().getText())
+                .humidity(weatherDto.getCurrent().getHumidity())
+                .iconUrl(weatherDto.getCurrent().getCondition().getIconUrl())
+                .temp(weatherDto.getCurrent().getTemp())
+                .tempFeelsLike(weatherDto.getCurrent().getTempFeelsLike())
+                .pressure(weatherDto.getCurrent().getPressure())
+                .windKph(weatherDto.getCurrent().getWindKph())
+                .build();
     }
 
     public WeatherConditionsDto mapToWeatherConditionsDto(WeatherConditions weather){
-        WeatherConditionsDto dto = new WeatherConditionsDto();
-        dto.setId(weather.getId());
-        dto.setLocation(weather.getLocation());
-        dto.setWeatherText(weather.getWeatherText());
-        dto.setIconUrl(weather.getIconUrl());
-        dto.setTemp(weather.getTemp());
-        dto.setTempFeelsLike(weather.getTempFeelsLike());
-        dto.setHumidity(weather.getHumidity());
-        dto.setPressure(weather.getPressure());
-        dto.setWindKph(weather.getWindKph());
-        return dto;
+        return WeatherConditionsDto.builder()
+                .id(weather.getId())
+                .checkDate(weather.getCheckDate())
+                .location(weather.getLocation())
+                .weatherText(weather.getWeatherText())
+                .humidity(weather.getHumidity())
+                .iconUrl(weather.getIconUrl())
+                .temp(weather.getTemp())
+                .tempFeelsLike(weather.getTempFeelsLike())
+                .pressure(weather.getPressure())
+                .windKph(weather.getWindKph())
+                .build();
     }
 
     public WeatherConditions mapToWeatherConditions(WeatherConditionsDto weatherDto){
-        WeatherConditions weather = new WeatherConditions();
-        weather.setId(weatherDto.getId());
-        weather.setLocation(weatherDto.getLocation());
-        weather.setWeatherText(weatherDto.getWeatherText());
-        weather.setIconUrl(weatherDto.getIconUrl());
-        weather.setTemp(weatherDto.getTemp());
-        weather.setTempFeelsLike(weatherDto.getTempFeelsLike());
-        weather.setHumidity(weatherDto.getHumidity());
-        weather.setPressure(weatherDto.getPressure());
-        weather.setWindKph(weatherDto.getWindKph());
-        return weather;
+        return WeatherConditions.builder()
+                .id(weatherDto.getId())
+                .checkDate(weatherDto.getCheckDate())
+                .location(weatherDto.getLocation())
+                .weatherText(weatherDto.getWeatherText())
+                .humidity(weatherDto.getHumidity())
+                .iconUrl(weatherDto.getIconUrl())
+                .temp(weatherDto.getTemp())
+                .tempFeelsLike(weatherDto.getTempFeelsLike())
+                .pressure(weatherDto.getPressure())
+                .windKph(weatherDto.getWindKph())
+                .build();
     }
 }
