@@ -1,6 +1,6 @@
 package com.ciembro.healthApp.controller;
 
-import com.ciembro.healthApp.domain.AuthenticationRequest;
+import com.ciembro.healthApp.domain.user.AuthenticationRequest;
 import com.ciembro.healthApp.domain.user.User;
 import com.ciembro.healthApp.repository.UserRepository;
 import com.ciembro.healthApp.security.MyUserDetailsService;

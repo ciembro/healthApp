@@ -33,11 +33,9 @@ public class DrugApiClient {
                             .collect(Collectors.toList()));
                     String next = response.getPaginationLinks().getNext();
                     response = restTemplate.getForObject(next, DrugApiDto.class);
-
                 }
             }
             return drugs;
-
         } catch (RestClientException e){
             System.out.println(e.getMessage());
             return new ArrayList<>();

@@ -1,13 +1,9 @@
 package com.ciembro.healthApp.controller;
 
-import com.ciembro.healthApp.domain.AuthenticationRequest;
+import com.ciembro.healthApp.domain.user.AuthenticationRequest;
 import com.ciembro.healthApp.domain.user.User;
-import com.ciembro.healthApp.facade.DrugFacade;
-import com.ciembro.healthApp.facade.UserFacade;
-import com.ciembro.healthApp.mapper.DrugMapper;
 import com.ciembro.healthApp.repository.UserRepository;
 import com.google.gson.Gson;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -15,7 +11,6 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,9 +18,7 @@ import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 @SpringJUnitWebConfig
 @AutoConfigureMockMvc

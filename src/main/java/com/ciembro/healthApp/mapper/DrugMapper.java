@@ -14,9 +14,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DrugMapper {
 
-    private final DrugRepository drugRepository;
-
-
     public Drug mapToDrug(DrugJsonDto drugJsonDto){
         int uniqueDrugId = drugJsonDto.getDrugJsonAttributes().getUniqueDrugId().getValue();
         String tradeName = drugJsonDto.getDrugJsonAttributes().getTradeName().getValue();

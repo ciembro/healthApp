@@ -3,12 +3,10 @@ package com.ciembro.healthApp.controller;
 import com.ciembro.healthApp.LocalDateAdapter;
 import com.ciembro.healthApp.LocalDateTimeAdapter;
 import com.ciembro.healthApp.domain.*;
+import com.ciembro.healthApp.domain.user.AuthenticationRequest;
 import com.ciembro.healthApp.domain.user.User;
-import com.ciembro.healthApp.domain.weather.WeatherConditions;
 import com.ciembro.healthApp.domain.weather.WeatherConditionsDto;
-import com.ciembro.healthApp.exception.UserNotFoundException;
 import com.ciembro.healthApp.facade.InsightsFacade;
-import com.ciembro.healthApp.facade.UserTreatmentFacade;
 import com.ciembro.healthApp.repository.UserRepository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -32,12 +30,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -231,44 +227,10 @@ class InsightControllerTest {
     }
 
 
-    private Insights getInsights(){
-        EmotionalState emotion =  new EmotionalState();
-        emotion.setId(1L);
-        emotion.setEngText("JOY");
-        emotion.setPlText("Radość");
 
-        SideEffect sideEffect =  new SideEffect();
-        sideEffect.setId(1L);
-        sideEffect.setText("Ból głowy");
-
-        return Insights.builder()
-                .id(1L)
-                .creationDate(LocalDate.now())
-                .user(user)
-                .sideEffects(List.of(sideEffect))
-                .emotions(List.of(emotion))
-                .comment("comment")
-                .weather(getWeatherConditions())
-                .build();
-    }
 
     private WeatherConditionsDto getWeatherConditionsDto(){
         return WeatherConditionsDto.builder()
-                .id(1L)
-                .checkDate(LocalDateTime.of(2021,7,19,15,0,0))
-                .humidity(1)
-                .iconUrl("icon/url")
-                .location("Krakow")
-                .pressure(1000)
-                .temp(25.0)
-                .tempFeelsLike(25.0)
-                .weatherText("weather text")
-                .windKph(5)
-                .build();
-    }
-
-    private WeatherConditions getWeatherConditions(){
-        return WeatherConditions.builder()
                 .id(1L)
                 .checkDate(LocalDateTime.of(2021,7,19,15,0,0))
                 .humidity(1)

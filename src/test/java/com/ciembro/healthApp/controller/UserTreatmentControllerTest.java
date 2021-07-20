@@ -1,7 +1,7 @@
 package com.ciembro.healthApp.controller;
 
 import com.ciembro.healthApp.LocalDateAdapter;
-import com.ciembro.healthApp.domain.AuthenticationRequest;
+import com.ciembro.healthApp.domain.user.AuthenticationRequest;
 import com.ciembro.healthApp.domain.CreatedUserTreatmentDto;
 import com.ciembro.healthApp.domain.UserTreatmentDto;
 import com.ciembro.healthApp.domain.drug.Drug;

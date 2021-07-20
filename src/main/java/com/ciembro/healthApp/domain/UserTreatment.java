@@ -12,7 +12,8 @@ import java.time.LocalDate;
                 @NamedNativeQuery(
                         name = "UserTreatment.findAllBetweenDates",
                         query = "select * from treatments where started_at <= :date " +
-                                "and :date <= finished_at and user_id = :userId",
+                                "and (finished_at is null or :date <= finished_at) " +
+                                "and user_id = :userId",
                         resultClass = UserTreatment.class
                 ),
                 @NamedNativeQuery(

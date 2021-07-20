@@ -2,9 +2,7 @@ package com.ciembro.healthApp.mapper;
 
 import com.ciembro.healthApp.domain.*;
 import com.ciembro.healthApp.exception.UserNotFoundException;
-import com.ciembro.healthApp.exception.WeatherConditionsNotFoundException;
 import com.ciembro.healthApp.service.UserService;
-import com.ciembro.healthApp.service.WeatherConditionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

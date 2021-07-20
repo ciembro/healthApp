@@ -1,11 +1,9 @@
 package com.ciembro.healthApp.controller;
 
-import com.ciembro.healthApp.domain.AuthenticationRequest;
-import com.ciembro.healthApp.domain.AuthenticationResponse;
+import com.ciembro.healthApp.domain.user.AuthenticationRequest;
 import com.ciembro.healthApp.domain.drug.Drug;
 import com.ciembro.healthApp.domain.drug.DrugDto;
 import com.ciembro.healthApp.domain.user.User;
-import com.ciembro.healthApp.exception.UserNotFoundException;
 import com.ciembro.healthApp.facade.DrugFacade;
 import com.ciembro.healthApp.mapper.DrugMapper;
 import com.ciembro.healthApp.repository.UserRepository;

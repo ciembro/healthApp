@@ -20,9 +20,4 @@ public class WeatherConditionsService {
         repository.deleteById(weatherId);
     }
 
-    public WeatherConditions findById(long id) throws WeatherConditionsNotFoundException {
-        return repository.findById(id).orElseThrow(WeatherConditionsNotFoundException::new);
-    }
-
-
 }

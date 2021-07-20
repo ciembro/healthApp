@@ -26,7 +26,7 @@ public class SideEffectService {
     public List<SideEffect> findAll(){
         return (List<SideEffect>)repository.findAll();
     }
-    public void loadSideEffects(){
+    public void updateSideEffectsDb(){
 
             Path path = Paths.get("src/main/resources/side_effects.txt");
             SideEffect sideEffect;

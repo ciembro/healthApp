@@ -1,6 +1,5 @@
 package com.ciembro.healthApp.facade;
 
-import com.ciembro.healthApp.domain.user.User;
 import com.ciembro.healthApp.exception.UserNotFoundException;
 import com.ciembro.healthApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

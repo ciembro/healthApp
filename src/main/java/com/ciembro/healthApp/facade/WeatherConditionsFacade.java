@@ -18,9 +18,7 @@ public class WeatherConditionsFacade {
     private WeatherConditionsService weatherConditionsService;
 
     public List<String> searchForMatchingLocations(String location){
-        List<String> s = weatherApiService.searchForLocations(location);
-        s.forEach(System.out::println);
-        return s;
+        return weatherApiService.searchForLocations(location);
     }
 
     public WeatherConditions getWeatherForLocation(String location){

@@ -1,10 +1,9 @@
 package com.ciembro.healthApp.controller;
 
-import com.ciembro.healthApp.domain.AuthenticationRequest;
+import com.ciembro.healthApp.domain.user.AuthenticationRequest;
 import com.ciembro.healthApp.domain.EmotionalState;
 import com.ciembro.healthApp.domain.EmotionalStateDto;
 import com.ciembro.healthApp.domain.user.User;
-import com.ciembro.healthApp.facade.UserTreatmentFacade;
 import com.ciembro.healthApp.mapper.EmotionalStateMapper;
 import com.ciembro.healthApp.repository.UserRepository;
 import com.ciembro.healthApp.service.EmotionalStateService;
@@ -30,7 +29,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

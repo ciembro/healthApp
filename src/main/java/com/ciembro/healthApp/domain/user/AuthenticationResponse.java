@@ -1,4 +1,4 @@
-package com.ciembro.healthApp.domain;
+package com.ciembro.healthApp.domain.user;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

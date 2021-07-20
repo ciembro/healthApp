@@ -22,7 +22,7 @@ public class EmotionalStateService {
         return repository.save(emotionalState);
     }
 
-    public void insertEmotionalStatesToDb(){
+    public void updateEmotionalStatesDb(){
         Path path = Paths.get("src/main/resources/emotions");
         EmotionalState emotionalState;
         try (BufferedReader reader = Files.newBufferedReader(path)) {

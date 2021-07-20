@@ -2,7 +2,6 @@ package com.ciembro.healthApp.mapper;
 
 import com.ciembro.healthApp.domain.EmotionalState;
 import com.ciembro.healthApp.domain.EmotionalStateDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

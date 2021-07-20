@@ -7,8 +7,5 @@ import java.util.Optional;
 
 public interface SideEffectRepository extends CrudRepository<SideEffect, Long> {
 
-
-    SideEffect findById(long id);
-
     Optional<SideEffect> findByText(String text);
 }

@@ -1,9 +1,7 @@
 package com.ciembro.healthApp.mapper;
 
-import com.ciembro.healthApp.domain.SideEffectDto;
 import com.ciembro.healthApp.domain.SideEffect;
-import com.ciembro.healthApp.repository.SideEffectRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ciembro.healthApp.domain.SideEffectDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -8,10 +8,7 @@ import com.ciembro.healthApp.service.DrugApiService;
 import com.ciembro.healthApp.service.DrugService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-
 
 import java.time.LocalDate;
 import java.util.List;

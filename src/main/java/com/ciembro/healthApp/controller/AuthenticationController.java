@@ -1,6 +1,6 @@
 package com.ciembro.healthApp.controller;
 
-import com.ciembro.healthApp.domain.AuthenticationRequest;
+import com.ciembro.healthApp.domain.user.AuthenticationRequest;
 import com.ciembro.healthApp.facade.AuthenticationFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

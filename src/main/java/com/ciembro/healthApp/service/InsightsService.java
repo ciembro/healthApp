@@ -3,7 +3,6 @@ package com.ciembro.healthApp.service;
 import com.ciembro.healthApp.domain.EmotionalState;
 import com.ciembro.healthApp.domain.Insights;
 import com.ciembro.healthApp.domain.SideEffect;
-import com.ciembro.healthApp.exception.InsightsNotFoundException;
 import com.ciembro.healthApp.repository.InsightsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

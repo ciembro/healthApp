@@ -1,10 +1,7 @@
 package com.ciembro.healthApp.service;
 
-import com.ciembro.healthApp.config.DatabaseConfig;
-import com.ciembro.healthApp.domain.AuthenticationRequest;
-import com.ciembro.healthApp.domain.AuthenticationResponse;
-import com.ciembro.healthApp.domain.user.User;
-import com.ciembro.healthApp.exception.UserNotFoundException;
+import com.ciembro.healthApp.domain.user.AuthenticationRequest;
+import com.ciembro.healthApp.domain.user.AuthenticationResponse;
 import com.ciembro.healthApp.security.JwtUtil;
 import com.ciembro.healthApp.security.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +25,7 @@ public class AuthenticationService {
     @Autowired
     private JwtUtil jwtTokenUtil;
 
-    public ResponseEntity<?> createAuthenticationToken(AuthenticationRequest request)
-            throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(AuthenticationRequest request) {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(

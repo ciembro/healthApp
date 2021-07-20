@@ -21,9 +21,6 @@ public class UserTreatmentMapper {
     private UserRepository userRepository;
 
     @Autowired
-    private DrugRepository drugRepository;
-
-    @Autowired
     private DrugMapper drugMapper;
 
     public UserTreatment mapToUserTreatment(UserTreatmentDto dto) throws UserNotFoundException, DrugNotFoundException {
