@@ -1,12 +1,11 @@
 package com.ciembro.healthApp.controller;
 
-import com.ciembro.healthApp.controller.AuthenticationController;
 import com.ciembro.healthApp.domain.AuthenticationRequest;
 import com.ciembro.healthApp.domain.user.User;
 import com.ciembro.healthApp.repository.UserRepository;
 import com.ciembro.healthApp.security.MyUserDetailsService;
-import com.ciembro.healthApp.security.domain.JwtUtil;
-import com.ciembro.healthApp.security.domain.MyUserDetails;
+import com.ciembro.healthApp.security.JwtUtil;
+import com.ciembro.healthApp.security.MyUserDetails;
 import com.google.gson.Gson;
 
 

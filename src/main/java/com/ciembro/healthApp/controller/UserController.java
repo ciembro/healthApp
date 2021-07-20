@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1/user")
+@RequestMapping("/v1")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -14,6 +14,7 @@ public class UserController {
 
     @PutMapping("/{username}/{location}")
     public void changeUserLocation(@PathVariable String username, @PathVariable String location) throws UserNotFoundException {
+        System.out.println(location);
         facade.changeUserLocation(location, username);
     }
 }

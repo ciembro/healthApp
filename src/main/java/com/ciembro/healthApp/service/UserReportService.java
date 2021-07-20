@@ -4,6 +4,7 @@ import com.ciembro.healthApp.domain.Insights;
 import com.ciembro.healthApp.domain.UserReportRow;
 import com.ciembro.healthApp.domain.drug.Drug;
 import com.ciembro.healthApp.domain.user.User;
+import com.ciembro.healthApp.exception.DrugNotFoundException;
 import com.ciembro.healthApp.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,8 +39,9 @@ public class UserReportService {
        return userReport;
    }
 
-   public List<UserReportRow> filterByDrug(Drug drug, String username) throws UserNotFoundException {
+   public List<UserReportRow> filterByDrug(long drugId, String username) throws UserNotFoundException, DrugNotFoundException {
        List<UserReportRow> report = generateReport(username);
+       Drug drug = drugService.findById(drugId);
        return report.stream()
                .filter(row -> row.getDrugs().contains(drug))
                .collect(Collectors.toList());

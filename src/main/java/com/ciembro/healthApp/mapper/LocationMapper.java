@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 @Component
 public class LocationMapper {
 
-    public List<String> mapToCity(List<LocationApiDto> locations){
+    public List<String> mapToCityList(List<LocationApiDto> locations){
         return locations.stream()
                 .map(LocationApiDto::getCity)
                 .collect(Collectors.toList());

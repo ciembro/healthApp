@@ -41,6 +41,10 @@ public class DrugService {
         return drugRepository.findByTradeNameFrag(tradeNameFrag);
     }
 
+    public Drug findById(long drugId) throws DrugNotFoundException {
+        return drugRepository.findById(drugId).orElseThrow(DrugNotFoundException::new);
+    }
+
     public List<Drug> findAllMatching(String textToMatch){
         List<Drug> matchedDrugs = new ArrayList<>();
         matchedDrugs.addAll(findByActiveSubstanceFrag(textToMatch));

@@ -1,6 +1,5 @@
 package com.ciembro.healthApp.security;
 
-import com.ciembro.healthApp.security.domain.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.AuthenticationManager;

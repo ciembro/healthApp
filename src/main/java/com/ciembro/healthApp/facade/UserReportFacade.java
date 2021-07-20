@@ -4,6 +4,7 @@ import com.ciembro.healthApp.domain.UserReportRow;
 import com.ciembro.healthApp.domain.UserReportRowDto;
 import com.ciembro.healthApp.domain.drug.Drug;
 import com.ciembro.healthApp.domain.drug.DrugDto;
+import com.ciembro.healthApp.exception.DrugNotFoundException;
 import com.ciembro.healthApp.exception.UserNotFoundException;
 import com.ciembro.healthApp.mapper.DrugMapper;
 import com.ciembro.healthApp.mapper.UserReportMapper;
@@ -33,9 +34,8 @@ public class UserReportFacade {
         return userReportMapper.mapToUserReportDto(userReport);
     }
 
-    public List<UserReportRowDto> filterByDrug(DrugDto drugDto, String username) throws UserNotFoundException {
-        Drug drug = drugMapper.mapToDrug(drugDto);
-        List<UserReportRow> userReport = userReportService.filterByDrug(drug, username) ;
+    public List<UserReportRowDto> filterByDrug(String drugId, String username) throws UserNotFoundException, DrugNotFoundException {
+        List<UserReportRow> userReport = userReportService.filterByDrug(Long.parseLong(drugId), username) ;
         return userReportMapper.mapToUserReportDto(userReport);
     }
 

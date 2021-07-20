@@ -1,4 +1,4 @@
-package com.ciembro.healthApp.security.domain;
+package com.ciembro.healthApp.security;
 
 import com.ciembro.healthApp.domain.user.User;
 import org.springframework.security.core.GrantedAuthority;

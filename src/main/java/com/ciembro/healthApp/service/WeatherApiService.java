@@ -28,6 +28,6 @@ public class WeatherApiService {
 
     public List<String> searchForLocations(String location){
         List<LocationApiDto> locations = client.searchForLocations(location);
-        return locationMapper.mapToCity(locations);
+        return locationMapper.mapToCityList(locations);
     }
 }

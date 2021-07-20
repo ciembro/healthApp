@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,9 +57,6 @@ public class User {
         this.password = password;
         this.roles = "ROLE_USER";
         this.active = true;
-        this.joiningDate = LocalDateTime.now();
     }
-
-
 
 }

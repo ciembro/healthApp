@@ -50,11 +50,10 @@ class UserControllerTest {
         //given
         //when&then
         mockMvc.perform(MockMvcRequestBuilders
-                .put("/v1/user/" + user.getUsername() + "/Poznan")
+                .put("/v1/" + user.getUsername() + "/Poznan")
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-
     }
 
     @BeforeAll

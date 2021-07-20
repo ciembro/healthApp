@@ -2,15 +2,14 @@ package com.ciembro.healthApp.controller;
 
 import com.ciembro.healthApp.domain.UserReportRowDto;
 import com.ciembro.healthApp.domain.drug.DrugDto;
+import com.ciembro.healthApp.exception.DrugNotFoundException;
 import com.ciembro.healthApp.exception.UserNotFoundException;
 import com.ciembro.healthApp.facade.UserReportFacade;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,11 +27,11 @@ public class UserReportController {
         return facade.generateReport(userDetails.getUsername());
     }
 
-    @GetMapping("/drug")
-    public List<UserReportRowDto> filterByDrug(@RequestBody DrugDto drugDto, Authentication authentication)
-            throws UserNotFoundException {
+    @GetMapping(value = "/drug/{drugId}" )
+    public List<UserReportRowDto> filterByDrug(Authentication authentication, @PathVariable String drugId)
+            throws UserNotFoundException, DrugNotFoundException {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        return facade.filterByDrug(drugDto, userDetails.getUsername());
+        return facade.filterByDrug(drugId, userDetails.getUsername());
     }
 
 }
